@@ -2,7 +2,7 @@
 
 * [Welcome on KAI documentation](README.md)
 
-## DISCOVER KAI <a href="#discover-kai" id="discover-kai"></a>
+## DISCOVER KAI
 
 * [Quickstart](discover-kai/quickstart.md)
 * [KAI Solution : Audit](discover-kai/publish-your-docs.md)
@@ -15,10 +15,10 @@
 
 * [Getting started](api/editor.md)
 * [API presentation](api/api-presentation/README.md)
-  * [CORE](api/api-presentation/core.md)
   * [AUDIT](api/api-presentation/audit.md)
   * [SEARCH](api/api-presentation/search.md)
   * [SEMANTIC GRAPH](api/api-presentation/semantic-graph.md)
+  * [Core](api/api-presentation/core.md)
 * [Security and Certifications](api/images-and-media.md)
 * [Troubleshooting & FAQs](api/troubleshooting-and-faqs.md)
 * [Markdown](api/markdown.md)
