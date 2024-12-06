@@ -1,6 +1,6 @@
 ---
-description: 'With AUDIT module : Control and review your Data !'
 icon: globe-pointer
+description: 'With AUDIT module : Control and review your Data !'
 ---
 
 # KAI Solution : Audit
@@ -33,6 +33,3 @@ icon: globe-pointer
 
 
 
-
-
-{% include "../.gitbook/includes/kai-audit-and-kai-search-mo....md" %}

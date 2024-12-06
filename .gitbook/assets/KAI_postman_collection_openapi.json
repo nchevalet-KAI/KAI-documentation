@@ -1,0 +1,2626 @@
+openapi: 3.0.0
+info:
+  title: KAI
+  version: 1.0.0
+servers:
+  - url: http://{{host}}
+tags:
+  - name: Introduction
+  - name: Endpoints
+  - name: Endpoints > semantic-graph
+  - name: Endpoints > core
+  - name: Endpoints > audit
+  - name: Endpoints > search
+  - name: SDK
+    description: |-
+      Python
+
+      Javascript/Typescript
+
+      PHP
+paths:
+  /api/semantic-graph/nodes:
+    post:
+      tags:
+        - Endpoints > semantic-graph
+      summary: /api/semantic-graph/nodes
+      description: "This endpoint retrieves information about semantic relationships between different concepts (nodes) in a graph.\_The response is an array of objects, where each object represents a relationship between two nodes. Each object contains the following fields:\n\n- id: The unique identifier for the relationship.\n    \n- node_1: The first concept or entity in the relationship.\n    \n- node_2: The second concept or entity in the relationship.\n    \n- edge: A textual description that explains the relationship between node_1 and node_2."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 0
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:12:20 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '8548'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 1
+                    node_1: Plantes
+                    node_2: Boite
+                    edge: >-
+                      Les plantes doivent être expédiées dans une boite
+
+                      Un dessin de fleur doit être réalisé sur le dessus du
+                      colis
+                  - id: 2
+                    node_1: Dessin de fleur
+                    node_2: Livreur
+                    edge: >-
+                      Le dessin de fleur permet au livreur de connaître le sens
+                      du colis lors de la livraison
+                  - id: 3
+                    node_1: Colis
+                    node_2: Supplément
+                    edge: >
+
+                      The key terms "Colis" and "Supplément" are closely related
+                      in the provided text. The text discusses various aspects
+                      of packaging and shipping colis (packages/parcels),
+                      including:
+
+
+                      - Packaging requirements for different types of items
+                      (e.g. plants, seeds, luxury watches)
+
+                      - Size and weight limitations for colis
+
+                      - Labeling and addressing requirements for colis
+
+                      - Availability of shipping labels and how to obtain them
+
+                      - Pickup and delivery options for colis
+
+                      - Insurance coverage and options for declaring higher
+                      value for colis
+
+
+                      The text also mentions that a "supplément" (additional
+                      fee) of 10 euros will be charged for each colis containing
+                      flowers.
+  /api/semantic-graph/linked-nodes:
+    post:
+      tags:
+        - Endpoints > semantic-graph
+      summary: /api/semantic-graph/linked-nodes
+      description: >-
+        Retrieve all relations and edges linked to the nodes of a given
+        relationship. You can check details in 2 request examples.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 3
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:13:30 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '2620'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: result only have label "Colis"
+                  value:
+                    response:
+                      - id: 39
+                        node_1: Colis
+                        node_2: Restrictions de poids
+                        edge: |-
+                          Packages must not weigh more than 70 kg
+                          Package length must not exceed 274 cm; .........
+                        count: 4
+                        documents:
+                          - Sharepoint::01Y3GAAY7QA3xxxxxxxxxxxxxxxxxxx
+                          - Sharepoint::01Y3GAAY2RQWxxxxxxxxxxxxxxxxxxx
+                          - Sharepoint::01Y3GAAY6MYUxxxxxxxxxxxxxxxxxxx
+                          - Sharepoint::01Y3GAAYZAWOxxxxxxxxxxxxxxxxxxx
+                      - id: 55
+                        node_1: Colis
+                        node_2: Perdu
+                        edge: >-
+                          Un colis est considéré comme perdu s'il n'a pas été
+                          livré 24 heures après .......
+                        count: 1
+                        documents:
+                          - Sharepoint::01Y3GAAY2RQWLxxxxxxxxxxxxxxxxxxx
+                      - id: 81
+                        node_1: Conducteur UPS
+                        node_2: Colis
+                        edge: |-
+                          The UPS driver picks up or delivers the package
+                          UPS Access Point ..........
+                        count: 1
+                        documents:
+                          - Sharepoint::01Y3GAAY6CJWZLJxxxxxxxxxxxxxxxxxxx
+                      - id: 93
+                        node_1: Client
+                        node_2: Colis
+                        edge: |-
+                          The client is the recipient of the package
+                          Les documents .......
+                        count: 2
+                        documents:
+                          - Sharepoint::01Y3GAAY6CJWZxxxxxxxxxxxxxxxxxxx
+                          - Sharepoint::01Y3GAAY2RQWLxxxxxxxxxxxxxxxxxxx
+                example-1:
+                  summary: result have 2 labels "Contact" and "Horaires"
+                  value:
+                    response:
+                      - id: 175
+                        node_1: Contact
+                        node_2: Service client
+                        edge: Le contact principal mentionné est le service client
+                        count: 1
+                        documents:
+                          - Sharepoint::01Y3GAAYZXCSOZME2JVJF2E74MTJONYKLG
+                      - id: 22
+                        node_1: Horaires
+                        node_2: Jours de semaine
+                        edge: >-
+                          Service hours are different for weekdays (Monday to
+                          Friday)
+
+                          Service hours are different for Saturday
+                        count: 1
+                        documents:
+                          - Sharepoint::01Y3GAAYYWAQDJ6IXGB5F3N424OFPFCCOE
+  /api/semantic-graph/nodes-by-label:
+    post:
+      tags:
+        - Endpoints > semantic-graph
+      summary: /api/semantic-graph/nodes-by-label
+      description: >-
+        List all Nodes where the mentioned Node is present. The input « label »
+        must be the exact name of the node_1 or node_2.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                label: UPS
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:16:46 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '12144'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 26
+                    node_1: UPS
+                    node_2: United Parcel Service Belgium SA
+                    edge: >-
+                      UPS is represented by United Parcel Service Belgium SA in
+                      Belgium
+
+                      UPS is represented by United Parcel Service SARL in
+                      Luxembourg
+
+                      UPS a ........
+                    count: 3
+                    documents:
+                      - Sharepoint::01Y3GAAY7QA3HMMxxxxxxxxxxxxxxxxxxx
+                      - Sharepoint::01Y3GAAY2WJJSYHxxxxxxxxxxxxxxxxxxx
+                      - Sharepoint::01Y3GAAYZAWOE2Lxxxxxxxxxxxxxxxxxxx
+                  - id: 46
+                    node_1: UPS
+                    node_2: Articles interdits
+                    edge: UPS interdit l'envoi de certains ........
+                    count: 3
+                    documents:
+                      - Sharepoint::01Y3GAAY5OMOxxxxxxxxxxxxxxxxxxx
+                      - Sharepoint::01Y3GAAY7QA3xxxxxxxxxxxxxxxxxxx
+                      - Sharepoint::01Y3GAAYZU6Jxxxxxxxxxxxxxxxxxxx
+  /api/semantic-graph/identify-nodes:
+    post:
+      tags:
+        - Endpoints > semantic-graph
+      summary: /api/semantic-graph/identify-nodes
+      description: >-
+        Identify nodes who can be used to defined the semantic context of the
+        query. It will return all nodes that are semantically similar to the
+        search query.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                query: United Parcel Service
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Fri, 29 Nov 2024 09:12:15 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '8500'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 31
+                    node_1: UPS
+                    node_2: Sous-traitants
+                    edge: >
+
+                      The key information found in the extracted texts is:
+
+
+                      1. UPS is a logistics and delivery company that provides
+                      transportation services for packages, documents, and
+                      palletized goods. UPS operates through various
+                      subsidiaries in different countries, such as United Parcel
+                      Service Belgium SA, United Parcel Service France SAS, and
+                      United Parcel Service SARL in Luxembourg.
+
+
+                      2. UPS utilizes subcontractors to provide its services and
+                      can contract in its own name as well as on behalf of its
+                      employees, agents, and subcontractors, all of whom benefit
+                      from the terms and conditions.
+
+
+                      3. The transportation services provided by UPS may be
+                      subject to international conventions such as the Warsaw
+                      Convention or the CMR Convention, which can govern and
+                      limit the liability of transportation companies for loss,
+                      damage, or delay of goods.
+
+
+                      4. UPS has the right to charge late payment fees,
+                      interest, and administrative costs if the shipper,
+                      recipient, or any other party responsible for the
+                      transportation costs fails to pay the amounts due. UPS can
+                      also retain or sell the shipment to recover the unpaid
+                      debt.
+
+
+                      5. UPS is not liable for its inability to commence or
+                      continue the transport of a shipment due to events beyond
+                      its control, such as transportation disruptions,
+                      government actions, or other force majeure events.
+                    count: 2
+                    documents:
+                      - Sharepoint::01Y3GAAY7QA3HMMIUEIVGLWNL276LLQWMX
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                  - id: 26
+                    node_1: UPS
+                    node_2: United Parcel Service Belgium SA
+                    edge: >-
+                      UPS is represented by United Parcel Service Belgium SA in
+                      Belgium
+
+                      UPS is represented by United Parcel Service SARL in
+                      Luxembourg
+
+                      UPS a établi des limites de poids et de taille spécifiques
+                      pour les colis
+
+                      UPS is represented by United Parcel Service Belgium SA in
+                      Belgium
+
+                      UPS is represented by United Parcel Service SARL in
+                      Luxembourg
+                    count: 3
+                    documents:
+                      - Sharepoint::01Y3GAAY7QA3HMMIUEIVGLWNL276LLQWMX
+                      - Sharepoint::01Y3GAAY2WJJSYHJAYTFBLXEQTPSCDGJUO
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                  - id: 209
+                    node_1: UPS
+                    node_2: Refund Guarantee
+                    edge: >-
+                      UPS offers a refund guarantee on shipping costs for
+                      certain services and destinations
+
+                      Details of the refund guarantee are available on the UPS
+                      website
+
+                      UPS Customer Service can confirm details about the refund
+                      guarantee
+                    count: 1
+                    documents:
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                  - id: 210
+                    node_1: UPS
+                    node_2: COD Service
+                    edge: >-
+                      UPS offers a Cash on Delivery (COD) service
+
+                      UPS offers Cash on Delivery (COD) service, collecting
+                      payment from the recipient and transferring it to the
+                      sender
+
+                      UPS's liability for collecting COD amounts is limited to
+                      the lowest of three amounts: the COD amount, the maximum
+                      authorized amount, or the actual value of the goods
+                    count: 1
+                    documents:
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                  - id: 7
+                    node_1: UPS
+                    node_2: France
+                    edge: >-
+
+                      The key information found in the given text is:
+
+
+                      1. UPS is a shipping and logistics company that provides
+                      transportation services in France.
+
+                      2. The text outlines the general terms and conditions for
+                      UPS transportation services, including:
+                         - Restrictions on package size, weight, and value
+                         - Prohibited items that cannot be shipped
+                         - Applicability of international transportation conventions like the Warsaw Convention and CMR Convention
+                         - UPS's use of subcontractors and ability to route shipments through transit points
+                         - Grouping of shipments from different senders
+                      3. The text also covers UPS's cash on delivery (COD)
+                      service, including:
+                         - Maximum COD amount per recipient per day
+                         - Acceptance of checks in the destination country's currency
+                         - UPS's process for paying the COD amount to the shipper
+                         - Shipper's responsibility for losses or claims related to undelivered COD shipments
+                         - Limitation of UPS's liability for COD collections
+
+                      UPS is used for shipping within France, with a delivery
+                      time of 24 hours.
+
+                      For shipping within France using UPS Access Point, the
+                      cost is 10 euros for orders below 250 euros and free for
+                      orders above 250 euros. The delivery time is 24 hours.
+
+                      For shipping within France using UPS, the cost is 25 euros
+                      for orders below 250 euros. The delivery time is 24 hours.
+                    count: 3
+                    documents:
+                      - Sharepoint::01Y3GAAY7QA3HMMIUEIVGLWNL276LLQWMX
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                      - Sharepoint::01Y3GAAYZFEMBZ5L3H25BIHL7EOG737VES
+                  - id: 23
+                    node_1: UPS
+                    node_2: Conditions Générales de Transport
+                    edge: >-
+                      UPS establishes Conditions Générales de Transport for
+                      shipping packages, documents, and envelopes
+
+                      The Conditions Générales de Transport are complemented by
+                      the Guide des Services et Tarifs UPS 2024
+
+                      UPS forms a contract with the Expéditeur for shipping
+                      services
+
+                      A single shipping note or waybill issued by UPS
+
+                      Le conducteur UPS indique généralement l'endroit où le
+                      colis a été déposé
+
+                      UPS establishes Conditions Générales de Transport for
+                      shipping packages, documents, and envelopes
+
+                      The Guide des Services UPS 2024 complements the Conditions
+                      Générales de Transport
+
+                      UPS se réserve le droit de refuser le transport de
+                      certains articles
+
+                      UPS pourrait ne pas contrôler les entrées et sorties des
+                      envois individuels de tous les centres de manutention.
+
+                      UPS peut refuser de transporter un envoi qui ne respecte
+                      pas les restrictions ou conditions spécifiées.
+
+                      UPS peut suspendre le transport d'un envoi qui ne respecte
+                      pas les conditions ou en cas de problèmes de livraison.
+
+                      UPS peut suspendre le transport s'il ne parvient pas à
+                      effectuer la livraison pour diverses raisons.
+
+                      UPS n'est pas tenu de suspendre le transport d'un colis
+                      sauf exceptions prévues
+
+                      UPS n'est pas tenu de rediriger la livraison vers un autre
+                      destinataire ou une autre adresse
+
+                      UPS n'est pas tenu de renvoyer un colis à son expéditeur
+                    count: 4
+                    documents:
+                      - Sharepoint::01Y3GAAY7QA3HMMIUEIVGLWNL276LLQWMX
+                      - Sharepoint::01Y3GAAY2RQWLGIFAHAZE3VWMZ6PWAQDXU
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                      - Sharepoint::01Y3GAAYZU6J7BO2XJCFA2P27T6XSK63BO
+                  - id: 76
+                    node_1: UPS
+                    node_2: Droit de rétention
+                    edge: >-
+                      UPS peut garder tout envoi qu'il transporte jusqu'à la
+                      réception du paiement intégral si une somme n'est pas
+                      payée
+
+                      UPS peut vendre un envoi et utiliser le produit de la
+                      vente pour se rembourser de la dette correspondante
+
+                      UPS n'offre pas de manutention spéciale pour certains
+                      types d'envois.
+
+                      UPS peut facturer des frais de stockage en cas de
+                      problèmes avec l'envoi.
+
+                      UPS peut encourir des taxes et droits de douane que
+                      l'expéditeur devra rembourser en cas de problèmes avec
+                      l'envoi.
+
+                      UPS peut être tenu de payer des taxes, droits ou impôts
+                      pour le compte de l'expéditeur, du destinataire ou d'un
+                      tiers
+
+                      UPS demandera d'abord le paiement des montants concernés
+                      au destinataire et/ou au tiers avant de se tourner vers
+                      l'expéditeur
+
+                      UPS a une responsabilité limitée pour les envois, régie
+                      par les conditions énoncées dans le document
+
+                      UPS a le droit de traiter les données personnelles
+                      fournies par l'expéditeur ou le destinataire dans le cadre
+                      du transport
+
+                      La responsabilité d'UPS pour violation des règles de
+                      traitement des données est limitée conformément au
+                      paragraphe 9-5
+
+                      Les réclamations contre UPS doivent être signifiées par
+                      écrit dans des délais spécifiques
+                    count: 2
+                    documents:
+                      - Sharepoint::01Y3GAAY7QA3HMMIUEIVGLWNL276LLQWMX
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                  - id: 51
+                    node_1: UPS
+                    node_2: Options de paiement
+                    edge: >-
+                      UPS offre plusieurs options de paiement pour les envois
+
+                      PayPal est l'une des options de paiement disponibles pour
+                      les envois UPS
+
+                      UPS a le droit d'imputer des frais de retard de paiement
+                      avec un maximum de 40 EUR (43 CHF en Suisse) par facture
+
+                      UPS a le droit d'imputer des frais de retard de paiement
+                      jusqu'à 40 EUR (43 CHF en Suisse)
+
+                      UPS peut garder l'envoi jusqu'à la réception du paiement
+                      intégral ou le vendre pour se rembourser
+
+                      UPS may accept checks for COD, which can be in euros or
+                      the destination country's currency
+                    count: 3
+                    documents:
+                      - Sharepoint::01Y3GAAY44O44H3BHWHVE2W55I4PJ4IA5R
+                      - Sharepoint::01Y3GAAY7QA3HMMIUEIVGLWNL276LLQWMX
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+                  - id: 241
+                    node_1: UPS
+                    node_2: Guide
+                    edge: >-
+                      Le Guide et ce document constituent l'intégralité du
+                      contrat entre UPS et l'expéditeur
+                    count: 1
+                    documents:
+                      - Sharepoint::01Y3GAAYZAWOE2LVGZCFFKFGGHUKYFVLC5
+  /api/orchestrator/stats/count-detected-documents:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /api/orchestrator/stats/count-detected-documents
+      description: get number of detected documents
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:41:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '15'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: 20
+  /api/orchestrator/stats/count-documents:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /api/orchestrator/stats/count-documents
+      description: get number of documents analyzed
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 08 May 2024 13:04:53 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '14'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            ETag:
+              schema:
+                type: string
+                example: W/"e-enKyUtzvgTMXMXMyvTdAHOghaxI"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: 6
+  /api/orchestrator/stats/count-indexable-documents:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /api/orchestrator/stats/count-indexable-documents
+      description: get number of indexable document
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:40:37 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '14'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: 0
+  /api/orchestrator/stats/count-indexed-documents:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /api/orchestrator/stats/count-indexed-documents
+      description: get number of indexed documents
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:41:01 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '15'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: 20
+  /api/orchestrator/list-docs:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /api/orchestrator/list-docs
+      description: list indexed documents
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: restify
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '1831'
+            Date:
+              schema:
+                type: string
+                example: Mon, 25 Nov 2024 06:13:26 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: Sharepoint::01Y3GAAYxxxxxxxxxx
+                    name: Note pour XXXXXXXXX.docx
+                  - id: Sharepoint::01Y3GAAYxxxxxxxxxx
+                    name: DOC 8 APRES XXXXXXXX.docx
+                  - id: Sharepoint::01Y3GAAYxxxxxxxxxx
+                    name: DOC 1 Emballage XXXXXXX.docx
+  /api/orchestrator/files/download:
+    post:
+      tags:
+        - Endpoints > core
+      summary: api/orchestrator/files/download
+      description: download file from your knowledge base.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: '{{documentId}}'
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/orchestrator/differential-indexation:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /api/orchestrator/differential-indexation
+      description: >-
+        Index only new/updated/removed documents. It ensures that the documents
+        are updated and their indexing reflects the latest modifications. (in
+        progress, not finish)
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /global-health:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /global-health
+      description: It returns global server running stats.
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '""'
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:36:42 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '17'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: OK
+  /health:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /health
+      description: It returns the running status of the instance and api.
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:37:32 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '17'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: OK
+  /version:
+    post:
+      tags:
+        - Endpoints > core
+      summary: /version
+      description: get version of service kai-api
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:48:50 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '23'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: '20240529'
+  /api/audit/conflict-information:
+    post:
+      tags:
+        - Endpoints > audit
+      summary: /api/audit/conflict-information
+      description: >-
+        Obtain conflict information in your knowledge base when two documents
+        contain similar information with differences that may cause
+        interpretation issues.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 0
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 03:58:00 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '22748'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 2
+                    subject: Valeur maximale xxxxxxxxx
+                    state: DETECTED
+                    creation_date: '2024-09-16T13:48:15.651Z'
+                    documents:
+                      - docId: Sharepoint::01Y3xxxxxxxxxxx
+                        information_involved: la valeur xxxxxxxxxxx
+                      - docId: Sharepoint::01Y3GAxxxxxxxxxx
+                        information_involved: Il n'est pas nécessaire de nous xxxxxxxxxxxx
+                    docsRef:
+                      - id: Sharepoint::01Y3xxxxxxxxxxx
+                        name: Complément produit rares.docx
+                        url: >-
+                          https://xxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxx.xxxxxxxxxxxxxxxx
+                      - id: Sharepoint::01Y3GAxxxxxxxxxx
+                        name: DOC 4 Assurances.docx
+                        url: >-
+                          https://xxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxxxxxx.xxxxxxxxxxxxxxxx
+  /api/audit/duplicated-information:
+    post:
+      tags:
+        - Endpoints > audit
+      summary: /api/audit/duplicated-information
+      description: Get similar information in your knowledge base.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 0
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 04:00:47 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '28764'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 2
+                    subject: Payment options
+                    state: DETECTED
+                    creation_date: '2024-09-16T13:48:07.222Z'
+                    documents:
+                      - docId: Sharepoint::01Y3GAAY44O44Hxxxxxxxxxxx
+                        information_involved: Plusieurs options de xxxxxxxxxxxx
+                      - docId: Sharepoint::01Y3GAAY7QA3Hxxxxxxxxxxxxxx
+                        information_involved: Si le destinataire xxxxxxxxxxxxxxxxx
+                    docsRef:
+                      - id: Sharepoint::01Y3GAAY44O44Hxxxxxxxxxxx
+                        name: DIVERS.docx
+                        url: xxxxxxxxxxxxxxxxxxxxxxxxx
+                      - id: Sharepoint::01Y3GAAY7QA3Hxxxxxxxxxxxxxx
+                        name: DOC 5 PAIEMENT.docx
+                        url: xxxxxxxxxxxxxxxxxxxxxxxxx
+                  - id: 7
+                    subject: Couverture de base pour les pertes ou dommages jusqu'à 85€
+                    state: DETECTED
+                    creation_date: '2024-09-16T13:48:23.736Z'
+                    documents:
+                      - docId: Sharepoint::01Y3GAAYZQ3xxxxxxxxxx
+                        information_involved: Votre envoi bénéficie xxxxxxxxxxxx
+                      - docId: Sharepoint::01Y3GAAYxxxxxxxxxxxx
+                        information_involved: En tout état de cause, xxxxxxxxxxxxxx
+                    docsRef:
+                      - id: Sharepoint::01Y3GAAYZQ3xxxxxxxxxx
+                        name: DIVERS.docx
+                        url: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                      - id: Sharepoint::01Y3GAAYxxxxxxxxxxxx
+                        name: DOC 4 Assurances.docx
+                        url: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  /api/audit/conflict-information/set-managed:
+    post:
+      tags:
+        - Endpoints > audit
+      summary: /api/audit/conflict-information/set-managed
+      description: set the state to managed for a conflict information.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 2
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 04:04:40 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '664'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  id: 2
+                  subject: Valeur maximale des montres dans un colis
+                  documents:
+                    - docId: Sharepoint::01Y3GAAYZQ3Oxxxxxxxxxxx
+                      information_involved: la valeur xxxxxxxxxxxxxx
+                    - docId: Sharepoint::01Y3GAAYZxxxxxxxxxxxxxxx
+                      information_involved: Il n'est pas xxxxxxxxxxxxxxxxx
+                  state: MANAGED
+                  creation_date: '2024-09-16T13:48:15.651Z'
+  /api/audit/duplicated-information/set-managed:
+    post:
+      tags:
+        - Endpoints > audit
+      summary: /api/audit/duplicated-information/set-managed
+      description: set the state to managed for a duplicated information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 2
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 04:05:55 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '746'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  id: 2
+                  subject: Payment options
+                  documents:
+                    - docId: Sharepoint::01Y3GAAY44xxxxxxxxxR
+                      information_involved: Plusieurs options xxxxxxxxxxxxxx
+                    - docId: Sharepoint::01Y3GAAY7QA3HMMIUExxxxxxxxxxx
+                      information_involved: Si le destinataire xxxxxxxxxxxxxxxxxxx
+                  state: MANAGED
+                  creation_date: '2024-09-16T13:48:07.222Z'
+  /api/audit/documents-to-manage:
+    post:
+      tags:
+        - Endpoints > audit
+      summary: /api/audit/documents-to-manage
+      description: |-
+        list of all documents who contain conflict or duplicated information.
+
+        Conflict or duplicated information have 2 state: 'DETECTED' or 'MANAGED'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 0
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Mon, 06 May 2024 09:19:17 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '1433'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            ETag:
+              schema:
+                type: string
+                example: W/"599-MtMnu0BZgJLzVKLLGkZNy+BaNjc"
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: >-
+                      Azure Blob Storage::xxxx::e-Alerte Generalisation
+                      Facturation Electronique.pdf
+                    name: e-Alerte Generalisation Facturation Electronique.pdf
+                    url: >-
+                      /api/orchestrator/files/download?id=Azure%20Blob%20Storage%3A%3Axxxx%3A%3Ae-Alerte%20Generalisation%20Facturation%20Electronique.pdf
+                  - id: >-
+                      Azure Blob Storage::xxxx::Facturation lectronique entre
+                      entreprises pour les TPE-PME - francenum.gouv.pdf
+                    name: >-
+                      Facturation lectronique entre entreprises pour les TPE-PME
+                      - francenum.gouv.pdf
+                    url: >-
+                      /api/orchestrator/files/download?id=Azure%20Blob%20Storage%3A%3Axxxx%3A%3AFacturation%20lectronique%20entre%20entreprises%20pour%20les%20TPE-PME%20-%20francenum.gouv.pdf
+                  - id: Azure Blob Storage::xxxx::faq_fe_v30122021.pdf
+                    name: faq_fe_v30122021.pdf
+                    url: >-
+                      /api/orchestrator/files/download?id=Azure%20Blob%20Storage%3A%3Axxxx%3A%3Afaq_fe_v30122021.pdf
+                  - id: >-
+                      Azure Blob
+                      Storage::d4930e91-44fd-435a-bb33-d621af415f35::github-git-cheat-sheet_copy.pdf
+                    name: github-git-cheat-sheet_copy.pdf
+                    url: >-
+                      /api/orchestrator/files/download?id=Azure%20Blob%20Storage%3A%3Ad4930e91-44fd-435a-bb33-d621af415f35%3A%3Agithub-git-cheat-sheet_copy.pdf
+                  - id: >-
+                      Azure Blob
+                      Storage::d4930e91-44fd-435a-bb33-d621af415f35::github-git-cheat-sheet.pdf
+                    name: github-git-cheat-sheet.pdf
+                    url: >-
+                      /api/orchestrator/files/download?id=Azure%20Blob%20Storage%3A%3Ad4930e91-44fd-435a-bb33-d621af415f35%3A%3Agithub-git-cheat-sheet.pdf
+  /api/audit/missing-subjects:
+    post:
+      tags:
+        - Endpoints > audit
+      summary: /api/audit/missing-subjects
+      description: List all missing subjects following user queries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 0
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 04:08:39 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '918'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 1
+                    subject: Shipping Costs
+                    questions:
+                      - >-
+                        combien me coûte l'envoie d'un colis de 45 m3 en
+                        angleterre ?
+                    information_needed: >-
+                      - Inquiry about the cost of sending a large volume package
+                      (45 m3) to England.
+                  - id: 2
+                    subject: Logistics
+                    questions:
+                      - >-
+                        combien me coûte l'envoie d'un colis de 45 000 m3 en
+                        angleterre ?
+                    information_needed: >-
+                      Concern related to the logistics of transporting a large
+                      volume of goods.
+                  - id: 34
+                    subject: Envoi de colis
+                    questions:
+                      - >-
+                        quel est le prix pour envoyer un colis de 45000 cm3 en
+                        angleterre ?
+                    information_needed: >-
+                      - Inquiry about the cost of shipping a 45000 cm3 package
+                      to England.
+
+                      - Procedure for sending a 45000 cm3 package to England.
+  /api/search/query:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/query
+      description: >-
+        search question and get an answer with different paramters,
+
+
+        \>query: query to search on the semantic index  
+
+        \>user: (optional) user identifier to log for this query  
+
+        \>impersonate: name a profile to imitate the style of answer. eg:
+        Knowledge manager  
+
+        \>multiDocuments: true if you want to search across multiple documents,
+        false if you want to retrieve an answer following only one document
+
+
+        \>needFollowingQuestions: true if you want to the API purpose multiple
+        next questions, else false
+
+
+        You can check details in 2 request examples.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                query: what is UPS delivery time in France ?
+                user: userid
+                impersonate: ''
+                multiDocuments: false
+                needFollowingQuestions: false
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:05:39 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '847'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Get the answer
+                  value:
+                    response:
+                      query: what is UPS delivery time in France ?
+                      answer: >-
+                        Le délai de livraison UPS en France est de 24 heures
+                        pour les envois nationaux, que ce soit avec le service
+                        standard UPS ou UPS Access Point.
+                      reason: >-
+                        Le document fournit des informations explicites sur les
+                        délais de livraison UPS en France. Il indique de manière
+                        cohérente que pour le service UPS standard et le service
+                        UPS Access Point, le délai de livraison pour les envois
+                        en France est de 24 heures.
+                      confidentRate: 0.95
+                      gotAnswer: true
+                      documents:
+                        - id: Sharepoint::01Y3GAAYZFEMxxxxxxxxxxxx
+                          name: COMPARAISON.docx
+                          url: xxxxxxxxxxxxxxxxxxxxxxxxxx
+                      followingQuestions: []
+                example-1:
+                  summary: Not get the answer
+                  value:
+                    response:
+                      query: what is the price to send a 45m3 package in China?
+                      answer: ''
+                      reason: >-
+                        The provided documents only contain shipping prices for
+                        France, EU countries, UK and US destinations. There is
+                        no information about shipping prices for packages in
+                        China.
+                      confidentRate: 0
+                      gotAnswer: false
+                      documents: []
+                      followingQuestions: []
+  /api/search/identify-specific-document:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/identify-specific-document
+      description: >-
+        Identify a concise question following the user needs and documents from
+        knowledge base. If in the return 'isFinal' is true, the correct question
+        is found and you can get correct question in 'question' field. If
+        'isFinal' is false, you can get AI proposed question in 'question'
+        field.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                conversation:
+                  - from: user
+                    message: Tell me somme information about UPS
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:11:09 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '111'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: /api/search/identify-specific-document
+                  value:
+                    response:
+                      isFinal: true
+                      question: >-
+                        What information does the UPS 2024 Service Guide for
+                        France provide?
+                example-1:
+                  summary: /api/search/identify-specific-document
+                  value:
+                    response:
+                      isFinal: false
+                      question: >-
+                        Pouvez-vous préciser ce que vous cherchez à savoir sur
+                        la commande SSH ?
+  /api/search/stats/list-search:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/stats/list-search
+      description: >-
+        History of searches performed since the beginning in ascending order. A
+        pagination system can be created with the offset value, limit per query
+        value.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 0
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 05:59:25 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '10584'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: 1
+                    query: Note pour l’ivoire
+                    answer_text: >-
+                      La note pour l'ivoire est un message d'avertissement sur
+                      un colis. Le message, écrit en français, indique que le
+                      colis peut contenir de l'ivoire et doit être manipulé avec
+                      précaution. Cette information est représentée visuellement
+                      par une icône de colis.
+                    user_id: ''
+                  - id: 2
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Selon nos documents, il y a deux informations différentes
+                      concernant les heures d'ouverture du service client :
+
+
+                      1. Une source indique que le service client est disponible
+                      de 8h à 21h du lundi au vendredi, et fermé le samedi.
+
+
+                      2. Une autre source mentionne des horaires différents : du
+                      lundi au vendredi de 8h00 à 19h00, et le samedi de 8h00 à
+                      13h00.
+
+
+                      En raison de cette discordance, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires les plus à jour.
+                    user_id: ''
+                  - id: 3
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Selon nos documents, il y a deux informations différentes
+                      concernant les heures d'ouverture du service client :
+
+
+                      1. Une source indique que le service client est disponible
+                      de 8h à 21h du lundi au vendredi, et fermé le samedi.
+
+
+                      2. Une autre source mentionne des horaires différents : du
+                      lundi au vendredi de 8h00 à 19h00, et le samedi de 8h00 à
+                      13h00.
+
+
+                      En raison de cette discordance, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires les plus à jour.
+                    user_id: ''
+                  - id: 4
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Selon nos documents, il y a deux informations différentes
+                      concernant les heures d'ouverture du service client :
+
+
+                      1. Une source indique que le service client est disponible
+                      de 8h à 21h du lundi au vendredi, et fermé le samedi.
+
+
+                      2. Une autre source mentionne des horaires différents : du
+                      lundi au vendredi de 8h00 à 19h00, et le samedi de 8h00 à
+                      13h00.
+
+
+                      En raison de cette discordance, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires les plus à jour.
+                    user_id: ''
+                  - id: 5
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Selon nos documents, il y a deux informations différentes
+                      concernant les heures d'ouverture du service client :
+
+
+                      1. Une source indique que le service client est disponible
+                      de 8h à 21h du lundi au vendredi, et fermé le samedi.
+
+
+                      2. Une autre source mentionne des horaires différents : du
+                      lundi au vendredi de 8h00 à 19h00, et le samedi de 8h00 à
+                      13h00.
+
+
+                      En raison de cette discordance, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires les plus à jour.
+                    user_id: ''
+                  - id: 6
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Selon nos documents, il y a deux informations différentes
+                      concernant les heures d'ouverture du service client :
+
+
+                      1. Une source indique que le service client est disponible
+                      de 8h à 21h du lundi au vendredi, et fermé le samedi.
+
+
+                      2. Une autre source mentionne des horaires différents : du
+                      lundi au vendredi de 8h00 à 19h00, et le samedi de 8h00 à
+                      13h00.
+
+
+                      En raison de cette discordance, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires les plus à jour.
+                    user_id: ''
+                  - id: 7
+                    query: >-
+                      Comment faire pour envoyer un colis de 45000 cm3 en
+                      angleterre ?
+                    answer_text: >-
+                      Pour envoyer un colis de 45000 cm3 en Angleterre, suivez
+                      ces étapes :
+
+
+                      1. Assurez-vous que votre colis respecte les limites de
+                      taille et de poids :
+
+                       - Poids maximal : 70kg
+
+                       - Longueur maximale : 274 cm
+
+                       - Longueur + circonférence combinées : ne dépassant pas 400 cm
+
+                      2. Préparez une facture commerciale en trois exemplaires :
+
+                       - Un pour les douanes
+
+                       - Un pour le client
+
+                       - Un pour vous-même
+
+                      3. Emballez soigneusement votre colis et étiquetez-le
+                      correctement.
+
+
+                      4. Choisissez un service d'expédition approprié (UPS ou
+                      autre transporteur).
+
+
+                      5. Soyez prêt à payer les frais de dédouanement, car
+                      depuis le 1er janvier 2021, les envois entre l'UE et le
+                      Royaume-Uni sont soumis à un dédouanement.
+                    user_id: ''
+                  - id: 8
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Selon nos documents, il y a deux informations différentes
+                      concernant les heures d'ouverture du service client :
+
+
+                      1. Une source indique que le service client est disponible
+                      de 8h à 21h du lundi au vendredi, et fermé le samedi.
+
+
+                      2. Une autre source mentionne des horaires différents : du
+                      lundi au vendredi de 8h00 à 19h00, et le samedi de 8h00 à
+                      13h00.
+
+
+                      En raison de cette discordance, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires les plus à jour.
+                    user_id: ''
+                  - id: 9
+                    query: quelles sont les heures d'ouverture du service client ?
+                    answer_text: >-
+                      Il y a des informations contradictoires concernant les
+                      heures d'ouverture du service client :
+
+
+                      1. Selon une source :
+
+                       - Du lundi au vendredi : de 8h à 21h
+
+                       - Fermé le samedi
+
+                      2. Selon une autre source :
+
+                       - Du lundi au vendredi : de 8h à 19h
+
+                       - Le samedi : de 8h à 13h
+
+                      En raison de cette incohérence, il serait préférable de
+                      contacter directement le service client pour obtenir les
+                      horaires exacts et à jour.
+                    user_id: ''
+                  - id: 10
+                    query: à quelle h le service client est ouvert ?
+                    answer_text: >-
+                      Selon les informations disponibles, les horaires du
+                      service client sont les suivants :
+
+
+                      1. Une source indique :
+
+                       - Du lundi au vendredi : de 8h à 21h
+
+                       - Fermé le samedi
+
+                      2. Une autre source indique :
+
+                       - Du lundi au vendredi : de 8h00 à 19h00
+
+                       - Le samedi : de 8h00 à 13h00
+
+                      En raison de cette différence, il est recommandé de
+                      vérifier les horaires les plus récents auprès du service
+                      client directement.
+                    user_id: ''
+                  - id: 11
+                    query: >-
+                      Comment faire pour envoyer un colis de 45000 cm3 en
+                      angleterre ?
+                    answer_text: >-
+                      Pour envoyer un colis de 45000 cm3 en Angleterre, voici
+                      les étapes à suivre :
+
+
+                      1. Vérifiez que votre colis respecte les limites de taille
+                      :
+
+                       - Le poids ne doit pas dépasser 70 kg
+
+                       - La longueur ne doit pas dépasser 274 cm
+
+                       - La longueur et la circonférence combinées ne doivent pas dépasser 400 cm
+
+                      2. Préparez une facture commerciale, car depuis le 1er
+                      janvier 2021, les envois vers le Royaume-Uni nécessitent
+                      un dédouanement. Vous aurez besoin de trois exemplaires
+                      imprimés de cette facture :
+
+                       - Un pour les douanes
+
+                       - Un pour le client
+
+                       - Un pour vous-même
+
+                      3. Emballez soigneusement votre colis et attachez-y
+                      l'étiquette d'expédition ainsi qu'un exemplaire de la
+                      facture commerciale.
+
+
+                      4. Placez un autre exemplaire de la facture commerciale à
+                      l'intérieur du colis pour votre client.
+
+
+                      5. Gardez le troisième exemplaire de la facture
+                      commerciale pour vos archives.
+
+
+                      6. Déposez votre colis dans un point de collecte UPS ou
+                      programmez un enlèvement.
+
+
+                      N'oubliez pas que des frais de douane et des taxes peuvent
+                      s'appliquer, qui seront généralement à la charge du
+                      destinataire.
+                    user_id: ''
+                  - id: 12
+                    query: >-
+                      ca me coûte combien d'envoyer un colis de 45000 cm3 en
+                      angleterre ?
+                    answer_text: >-
+                      D'après les informations fournies, l'envoi d'un colis de
+                      45000 cm3 en Angleterre (Royaume-Uni) coûterait 26,9 €.
+
+
+                      Ce prix correspond à la catégorie "Moyen" dans le tableau
+                      des tarifs, qui s'applique aux colis d'un volume maximal
+                      de 50 000 cm3.
+                    user_id: ''
+                  - id: 13
+                    query: combien me coûte l'envoie d'un colis en angleterre ?
+                    answer_text: >-
+                      Le coût d'envoi d'un colis en Angleterre (Royaume-Uni)
+                      varie en fonction de la taille du colis :
+
+
+                      - Très petit colis : 16€
+
+                      - Petit colis : 19€
+
+                      - Colis moyen : 26,9€
+
+                      - Grand colis : 32,6€
+
+                      - Très grand colis : 37,9€
+
+
+                      Le prix dépend donc de la taille de votre colis, allant de
+                      16€ pour un très petit colis à 37,9€ pour un très grand
+                      colis.
+                    user_id: ''
+                  - id: 14
+                    query: >-
+                      combien me coûte l'envoie d'un colis de 45 000 m3 en
+                      angleterre ?
+                    answer_text: null
+                    user_id: ''
+                  - id: 15
+                    query: >-
+                      combien me coûte l'envoie d'un colis de 45 m3 en
+                      angleterre ?
+                    answer_text: null
+                    user_id: ''
+                  - id: 16
+                    query: >-
+                      combien me coûte l'envoie d'un colis de 45 000 cm3 en
+                      angleterre ?
+                    answer_text: >-
+                      Le coût d'envoi d'un colis de 45 000 cm3 en Angleterre est
+                      de 26,9 €. 
+
+
+                      Cependant, il est important de noter que depuis le 1er
+                      janvier 2021, les expéditions vers le Royaume-Uni
+                      nécessitent un dédouanement. Ce tarif pourrait donc ne pas
+                      inclure les frais de dédouanement potentiels.
+                    user_id: ''
+                  - id: 17
+                    query: >-
+                      Comment faire pour envoyer un colis de 45000 cm3 en
+                      angleterre ?
+                    answer_text: >-
+                      Pour envoyer un colis de 45000 cm3 en Angleterre, voici
+                      les étapes à suivre :
+
+
+                      1. Vérifiez que votre colis respecte les limites de taille
+                      :
+
+                       - Le poids ne doit pas dépasser 70 kg
+
+                       - La longueur ne doit pas dépasser 274 cm
+
+                       - La longueur et la circonférence combinées ne doivent pas dépasser 400 cm
+
+                      2. Préparez une facture commerciale, car depuis le 1er
+                      janvier 2021, les envois vers le Royaume-Uni nécessitent
+                      un dédouanement. Vous aurez besoin de trois exemplaires
+                      imprimés de cette facture :
+
+                       - Un pour les douanes
+
+                       - Un pour le client
+
+                       - Un pour vous-même
+
+                      3. Emballez soigneusement votre colis et attachez-y
+                      l'étiquette d'expédition ainsi qu'un exemplaire de la
+                      facture commerciale.
+
+
+                      4. Placez un autre exemplaire de la facture commerciale à
+                      l'intérieur du colis pour votre client.
+
+
+                      5. Gardez le troisième exemplaire de la facture
+                      commerciale pour vos archives.
+
+
+                      6. Déposez votre colis dans un point de collecte UPS ou
+                      programmez un enlèvement.
+
+
+                      N'oubliez pas que des frais de douane et des taxes peuvent
+                      s'appliquer, qui seront généralement à la charge du
+                      destinataire.
+                    user_id: ''
+                  - id: 18
+                    query: >-
+                      combien coûte l'envoie un colis de 45000 cm3 en angleterre
+                      ?
+                    answer_text: >-
+                      Le coût d'envoi d'un colis de 45000 cm3 en Angleterre est
+                      de 26,9 €.
+                    user_id: ''
+                  - id: 19
+                    query: >-
+                      combien coûte l'envoie d'un colis de 45000 cm3 en
+                      angleterre ?
+                    answer_text: >-
+                      Le coût d'envoi d'un colis de 45000 cm3 en Angleterre est
+                      de 26,9 €.
+                    user_id: ''
+                  - id: 20
+                    query: coût pour envoyer un colis de 45 000 cm3 en angleterre
+                    answer_text: >-
+                      Le coût pour envoyer un colis de 45 000 cm3 en Angleterre
+                      (Royaume-Uni) est de 26,9 €.
+
+
+                      Cette taille de colis correspond à la catégorie "Moyen"
+                      dans le tableau des tarifs, qui comprend les colis jusqu'à
+                      50 000 cm3.
+                    user_id: ''
+  /api/search/stats/count-search:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/stats/count-search
+      description: count number of call on search (/query) endpoint
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:00:08 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '15'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: 83
+  /api/search/stats/count-answered-search:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/stats/count-answered-search
+      description: >-
+        count number of call on search (/query) endpoint where KAI find an
+        answer
+      requestBody:
+        content: {}
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 06:01:11 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '15'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response: 80
+  /api/search/docs:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/docs
+      description: "Retrieve the\_documents\_names and url locations of the documents based on the provided document IDs."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                docsIds:
+                  - '{{documentId}}'
+                  - '{{documentId2}}'
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 07:06:26 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '589'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  - id: Sharepoint::01Y3GAAYZ2L5MNAxxxxxxx
+                    name: Complément produit rares.docx
+                    url: https://xxxxxxxxxxx.xxxxxxxxx.xxxxxxxxxxx
+                  - id: Sharepoint::01Y3GAAYYWAQDJ6xxxxxxx
+                    name: contact en image.pdf
+                    url: https://xxxxxxxxxxx.xxxxxxxxx.xxxxxxxxxxx
+  /api/search/doc:
+    post:
+      tags:
+        - Endpoints > search
+      summary: /api/search/doc
+      description: get back a document signature
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: '{{documentId}}'
+      parameters:
+        - name: api-key
+          in: header
+          schema:
+            type: string
+          example: '{{api-key}}'
+        - name: instance-id
+          in: header
+          schema:
+            type: string
+          example: '{{instance-id}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: nginx/1.25.3
+            Date:
+              schema:
+                type: string
+                example: Wed, 23 Oct 2024 07:08:00 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '2761'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            vary:
+              schema:
+                type: string
+                example: >-
+                  origin,access-control-request-method,access-control-request-headers
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                response:
+                  name: DOC 4 Assurances.docx
+                  url: >-
+                    https://skillsolutionsoftware.sharepoint.com/sites/Skillbase-KAI/_layouts/15/Doc.aspx?sourcedoc=%7B6CA0DB30-C3F8-404D-82DF-C396F747176A%7D&file=DOC%204%20Assurances.docx&action=default&mobileredirect=true
+                  document:
+                    id: Sharepoint::01Y3GAAYZQ3OQGZ6GDJVAIFX6DS33UOF3K
+                    name: DOC 4 Assurances.docx
+                    extraproperties:
+                      id: 01Y3GAAYZQ3OQGZ6GDJVAIFX6DS33UOF3K
+                      cTag: '"c:{6CA0DB30-C3F8-404D-82DF-C396F747176A},2"'
+                      eTag: '"{6CA0DB30-C3F8-404D-82DF-C396F747176A},1"'
+                      file:
+                        hashes:
+                          quickXorHash: S3IkNDfzFTntRKk90ttbIB2/PJw=
+                        mimeType: >-
+                          application/vnd.openxmlformats-officedocument.wordprocessingml.document
+                      name: DOC 4 Assurances.docx
+                      size: 21772
+                      shared:
+                        scope: users
+                      webUrl: >-
+                        https://skillsolutionsoftware.sharepoint.com/sites/Skillbase-KAI/_layouts/15/Doc.aspx?sourcedoc=%7B6CA0DB30-C3F8-404D-82DF-C396F747176A%7D&file=DOC%204%20Assurances.docx&action=default&mobileredirect=true
+                      createdBy:
+                        user:
+                          id: 7b51bc72-3609-4f5a-90dc-dc092bef6ef9
+                          email: sngo@wats.ai
+                          displayName: Stephane NGO
+                      kb_signature:
+                        name: Skillbase-KAI::KAI/KAI DEMO V2 - Instances/LVMH DEMO
+                        type: SharepointKnowledgeBase
+                      fileSystemInfo:
+                        createdDateTime: '2024-06-07T15:08:17Z'
+                        lastModifiedDateTime: '2024-06-07T15:08:17Z'
+                      lastModifiedBy:
+                        user:
+                          id: 7b51bc72-3609-4f5a-90dc-dc092bef6ef9
+                          email: sngo@wats.ai
+                          displayName: Stephane NGO
+                      createdDateTime: '2024-06-07T15:08:17Z'
+                      parentReference:
+                        id: 01Y3GAAYZ6BZX3D5FZRJEJXM454S3M6UEN
+                        name: LVMH DEMO
+                        path: >-
+                          /drives/b!GizPr4fHx0-m8l-A_iIpSRdsr1PHDJBBvgIFWrKoORA1hRhJ_-lnR7uaI0AYJTJp/root:/KAI/KAI
+                          DEMO V2 - Instances/LVMH DEMO
+                        siteId: afcf2c1a-c787-4fc7-a6f2-5f80fe222949
+                        driveId: >-
+                          b!GizPr4fHx0-m8l-A_iIpSRdsr1PHDJBBvgIFWrKoORA1hRhJ_-lnR7uaI0AYJTJp
+                        driveType: documentLibrary
+                      lastModifiedDateTime: '2024-06-07T15:08:17Z'
+                      '@microsoft.graph.downloadUrl': >-
+                        https://skillsolutionsoftware.sharepoint.com/sites/Skillbase-KAI/_layouts/15/download.aspx?UniqueId=6ca0db30-c3f8-404d-82df-c396f747176a&Translate=false&tempauth=v1.eyJzaXRlaWQiOiJhZmNmMmMxYS1jNzg3LTRmYzctYTZmMi01ZjgwZmUyMjI5NDkiLCJhcHBfZGlzcGxheW5hbWUiOiJhdWRpdC1rbSIsImF1ZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMC9za2lsbHNvbHV0aW9uc29mdHdhcmUuc2hhcmVwb2ludC5jb21AZmZiNzRlMzYtNTRjZC00YmJmLThhNDQtMDg3ZjU4YjJjMGQzIiwiZXhwIjoiMTcyNjQ5Nzc5OCJ9.CgoKBHNuaWQSAjY0EgsIuKK55fGXqz0QBRoNMjAuMTkwLjE3Ny4yNSosdjlRZTRZSW45TDNvcVpUM0Zlb0srbjN0dXc0ZnJaQTdpUXU3MWkyYUpEcz0wmAE4AUIQoVDT-kJQAJDhsAHFsZ2f4koQaGFzaGVkcHJvb2Z0b2tlbnoBMboBJmdyb3VwLnJlYWQgYWxsc2l0ZXMucmVhZCBhbGxmaWxlcy5yZWFkwgFJODQ4ZTVjNTEtZGExYS00NmU1LWJiM2ItNTQxN2JjYWYxYzc1QGZmYjc0ZTM2LTU0Y2QtNGJiZi04YTQ0LTA4N2Y1OGIyYzBkM8gBAQ.m2aA0M-ZcqhvH5GCROaZlDh6ypteCPmHxcHlaoWYo3k&ApiVersion=2.0

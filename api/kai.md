@@ -1,11 +1,12 @@
+---
+description: Import from Postman file converted into markdown
+---
+
 # KAI
 
 ## Project: KAI
 
-## 📁 Collection: Introduction
-
 ## 📁 Collection: Endpoints
-
 
 ### End-point: /api/orchestrator/stats/count-detected-documents
 

@@ -1,4 +1,10 @@
-# SEMANTIC GRAPH
+---
+description: >-
+  Generated list of end points from OpenAPI formatted file of Postman collection
+  export v2.1.
+---
+
+# Semantic graph
 
 ### End-point: /api/semantic-graph/nodes
 
@@ -17,14 +23,9 @@ This endpoint retrieves information about semantic relationships between differe
 
 #### Headers
 
-| Content-Type | Value         |
-| ------------ | ------------- |
-| api-key      | \{{api-key\}} |
-
-#### Headers
-
 | Content-Type | Value             |
 | ------------ | ----------------- |
+| api-key      | \{{api-key\}}     |
 | instance-id  | \{{instance-id\}} |
 
 #### Body (**raw**)
@@ -385,4 +386,3 @@ Identify nodes who can be used to defined the semantic context of the query. It 
 ```
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-

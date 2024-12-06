@@ -10,16 +10,9 @@ icon: globe-pointer
 * Provides reliable, complete, and comprehensive answers to the search queries, using generative AI.
 * Facilitates instant access to the documents that contain the information you need.
 
-<figure><img src="https://gitbookio.github.io/onboarding-template-images/publish-hero.png" alt=""><figcaption><p>Search in live.</p></figcaption></figure>
-
 The search module is personnalisable and provides an answer to your question according these parameters :&#x20;
 
 * Multi-document : Is your questions retrieve informations from only one document to give you an answer or it can seazrch among several documents at the same time to aggregate and create a complete answer ?
-* Linked questions : Do you want some&#x20;
-*
+* Following questions : To deep dive into the topic of the current answer, we suggest new questions.
 
-
-
-
-
-{% include "../.gitbook/includes/kai-audit-and-kai-search-mo....md" %}
+<figure><img src="../.gitbook/assets/search-basic-exemple-with-multidocuments.png" alt=""><figcaption></figcaption></figure>

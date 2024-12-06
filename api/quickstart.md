@@ -1,6 +1,7 @@
 ---
-description: In a few words ... What's KAI ?
 icon: bullseye-arrow
+description: In a few words ... What's KAI ?
+hidden: true
 ---
 
 # Import

@@ -6,14 +6,6 @@ icon: pen-to-square
 
 GitBook has a powerful block-based editor that allows you to seamlessly create, update, and enhance your content.
 
-<figure><img src="https://gitbookio.github.io/onboarding-template-images/editor-hero.png" alt=""><figcaption></figcaption></figure>
-
-### Writing content
-
-GitBook offers a range of block types for you to add to your content inline — from simple text and tables, to code blocks and more. These elements will make your pages more useful to readers, and offer extra information and context.
-
-Either start typing below, or press `/` to see a list of the blocks you can insert into your page.
-
 ### Add a new block
 
 {% stepper %}
@@ -35,4 +27,14 @@ Try searching for “Stepper”, for exampe, to insert the stepper block.
 Click or press Enter to insert your block. From here, you’ll be able to edit it as needed.
 {% endstep %}
 {% endstepper %}
+
+
+
+
+
+### SDKs
+
+{% embed url="https://github.com/k-ai-Documentation/sdk-js/tree/version2.0" %}
+
+{% embed url="https://github.com/k-ai-Documentation/sdk-python" %}
 
