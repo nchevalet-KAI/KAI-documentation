@@ -19,7 +19,7 @@ layout:
 
 ### Exploit your knowledge and increase your ROI with Genai
 
-KAI provides an AI platform to automate the knowledge management of your databases. Based on 10 years of research in data and knowledge management and 4 years of research in AI, KAI is designed to integrate directly with your tools and adapt to your work environment. KAI’s [solutions](https://k-ai.ai/ai-solution-for-knowledge-management/) will enable you to quickly and easily cleanse your data and exploit your knowledge with generative AI in a fast and easy way, in order to improve work processes.
+KAI provides an AI platform to automate the knowledge management of your databases. Based on 10 years of research in data and knowledge management and 4 years of research in AI, KAI is designed to integrate directly with your tools and adapt to your work environment. KAI’s solutions will enable you to quickly and easily cleanse your data and exploit your knowledge with generative AI in a fast and easy way, in order to improve work processes.
 
 ### Jump right in
 
