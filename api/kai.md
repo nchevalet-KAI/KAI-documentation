@@ -1,5 +1,6 @@
 ---
 description: Import from Postman file converted into markdown
+hidden: true
 ---
 
 # KAI

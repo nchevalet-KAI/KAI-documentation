@@ -1,29 +1,19 @@
-# API presentation
+---
+description: >-
+  An API testing interface is available on Postman :
+  https://documenter.getpostman.com/view/30765019/2s9YXcek45
+icon: webhook
+---
 
-### SDKs
+# API
 
-Code examples for each language's SDK can be found within the following subrepository. The examples here demonstrate the most common uses of the SDK for each language.
+Our API is organized into four types of endpoints:
 
-|     SDK    |                             folder                            | SDK version |
-| :--------: | :-----------------------------------------------------------: | :---------: |
-| Javascript | [javascript](https://github.com/k-ai-Documentation/sdk-js-ts) |     1.0     |
-|     PHP    |      [PHP](https://github.com/k-ai-Documentation/sdk-php)     |     1.0     |
-|   Python   |   [python](https://github.com/k-ai-Documentation/sdk-python)  |     1.0     |
+**Core**: for basic and central functions\
+**Search**: for search module functions\
+**Audit**: for the audit module functions\
+**Semantic Graph**: for raw results related to graph generation from provided documents.
 
-### Demos
 
-We also provide a set of demos that demonstrate how to use the K-ai SDKs to interact with K-ai service in different languages.
 
-**REACT**
-
-| Senario |                                          folder                                          |
-| :-----: | :--------------------------------------------------------------------------------------: |
-|  Search |                [Search](https://github.com/k-ai-Documentation/react-demo)                |
-|  Audit  | [Audit](https://github.com/k-ai-Documentation/k-ai-Documentation/blob/main/vuesearchurl) |
-
-**VUE**
-
-| Senario |                                          folder                                          |
-| :-----: | :--------------------------------------------------------------------------------------: |
-|  Search |                 [Search](https://github.com/k-ai-Documentation/vue-demo)                 |
-|  Audit  | [Audit](https://github.com/k-ai-Documentation/k-ai-Documentation/blob/main/vuesearchurl) |
+Find all endpoints on Postman [here](https://documenter.getpostman.com/view/30765019/2s9YXcek45) .\

@@ -14,12 +14,12 @@
 ## TECHNICAL DOCUMENTATION <a href="#api" id="api"></a>
 
 * [Getting started](api/editor.md)
-* [API presentation](api/api-presentation/README.md)
+* [API](api/api-presentation/README.md)
   * [Audit](api/api-presentation/audit.md)
   * [Search](api/api-presentation/search.md)
-  * [Core](api/api-presentation/core/README.md)
-    * [Sous page test](api/api-presentation/core/sous-page-test.md)
+  * [Core](api/api-presentation/core.md)
   * [Semantic graph](api/api-presentation/semantic-graph.md)
+* [SDKs](api/sdks.md)
 * [Security and Certifications](api/images-and-media.md)
 * [Troubleshooting & FAQs](api/troubleshooting-and-faqs.md)
 * [KAI](api/kai.md)

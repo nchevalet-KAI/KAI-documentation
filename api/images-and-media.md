@@ -1,5 +1,6 @@
 ---
-icon: image-landscape
+icon: shield-check
+description: TO FILL
 ---
 
 # Security and Certifications

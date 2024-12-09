@@ -6,37 +6,22 @@ icon: pen-to-square
 
 Our documentation covers three key elements: (1) the API and its detailed endpoints, (2) SDKs, which are software development kits for integrating our services, and (3) front-end examples to help integrate the KAI solution.
 
-
-
-### Add a new block
-
 {% stepper %}
 {% step %}
-### Open the insert block menu
+### KAI API
 
-Press `/` on your keyboard to open the insert block menu.
+KAI offers more than 20 endpoints to provide you the raw information about your knowledge base. The following pages present the specifications and required informations to question the endpoints.
 {% endstep %}
 
 {% step %}
-### Search for the block you need&#x20;
+### Choose an SDK to facilitate API integration
 
-Try searching for “Stepper”, for exampe, to insert the stepper block.
+Select JS, Python, or PHP SDK based on your technical preferences.
 {% endstep %}
 
 {% step %}
-### Insert and edit your block
+### Try it easily with our demos
 
-Click or press Enter to insert your block. From here, you’ll be able to edit it as needed.
+Snippets and front-end exemples available in several langages to simplify the first steps.
 {% endstep %}
 {% endstepper %}
-
-
-
-
-
-### SDKs
-
-{% embed url="https://github.com/k-ai-Documentation/sdk-js/tree/version2.0" %}
-
-{% embed url="https://github.com/k-ai-Documentation/sdk-python" %}
-
