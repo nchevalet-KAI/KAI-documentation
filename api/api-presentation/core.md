@@ -1,10 +1,4 @@
----
-description: Core
----
-
 # Core
-
-
 
 ```
 /version
@@ -60,8 +54,4 @@ description: Core
 {% swagger src="../../.gitbook/assets/KAI_postman_collection_openapi.json" path="/api/orchestrator/stats/count-detected-documents" method="post" %}
 [KAI_postman_collection_openapi.json](../../.gitbook/assets/KAI_postman_collection_openapi.json)
 {% endswagger %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
