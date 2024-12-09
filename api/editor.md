@@ -4,7 +4,9 @@ icon: pen-to-square
 
 # Getting started
 
-GitBook has a powerful block-based editor that allows you to seamlessly create, update, and enhance your content.
+Our documentation covers three key elements: (1) the API and its detailed endpoints, (2) SDKs, which are software development kits for integrating our services, and (3) front-end examples to help integrate the KAI solution.
+
+
 
 ### Add a new block
 

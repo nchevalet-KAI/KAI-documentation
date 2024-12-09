@@ -1,6 +1,6 @@
 ---
-description: In a few words ... What's KAI ?
 icon: bullseye-arrow
+description: In a few words ... What's KAI ?
 cover: ../.gitbook/assets/Capture d’écran 2024-12-05 à 14.23.10.png
 coverY: 0
 layout:
@@ -38,13 +38,13 @@ Nowadays, enterprises and companies have **phenomenal quantities of random quali
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="158.33333333333331"></th><th width="164"></th><th width="215"></th><th></th></tr></thead><tbody><tr><td><strong>Unstructured Data</strong></td><td><strong>High-volume databases</strong></td><td><p>Read <strong>Multiple Formats</strong></p><p>PDF, Word, Excel, PPT, .. </p></td><td>Exploit <strong>Various Content</strong><br>Text, images, graphs, tables,..</td></tr></tbody></table>
 
-When working with databases, it is important to recognize and handle various types and formats effectively. Here are some common data formats you might encounter:
+When managing databases, it's crucial to identify and manage different data types and formats efficiently. Below are some typical data formats you may come across:
 
 * **Tables & Graphs**: Represent structured information visually.
 * **Images & Text**: Provide visual and written content.
 * **Documents**: Found in formats like Word, PDF, Excel, and PowerPoint.
-* **Multiple Formats**: Data existing across different platforms.
-* **High-Volume Databases**: Manage large amounts of data efficiently.
+* **Multiple Sources**: Data existing across different platforms.
+* **High-Volume Databases**: Large amounts of data to manage efficiently.
 
 
 
@@ -55,7 +55,7 @@ Adopting KAI's AI platform for Knowledge Management can offer several advantages
 1. **Efficiency**: Automate and streamline data organization processes.
 2. **Accuracy**: Reduce errors through AI-driven data management.
 3. **Scalability**: Easily manage increasing amounts of data.
-4. **Integration**: Seamlessly incorporate with existing systems and workflows.
+4. **Integration**: Seamlessly incorporate with existing systems and workflows. We are a middleware.
 5. **Customization**: Tailor solutions to meet specific organizational needs.
 
 

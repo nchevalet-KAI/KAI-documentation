@@ -17,7 +17,7 @@ description: 'With AUDIT module : Control and review your Data !'
 
 * **Documents to manage** : List all documents where a potential conflict or duplicated content is present.
 
-<div align="center" data-full-width="true"><figure><img src="../.gitbook/assets/Documents to manage exemple.png" alt="" width="166"><figcaption><p>All documents involved in the audit</p></figcaption></figure></div>
+<div align="center" data-full-width="true"><figure><img src="../.gitbook/assets/Documents to manage exemple.png" alt="" width="166"><figcaption><p>Get all documents involved in the audit results</p></figcaption></figure></div>
 
 * **Conflict information** : List documents with potential content conflicts, or obselete information.&#x20;
 
