@@ -10,6 +10,7 @@
 * [KAI Technology](discover-kai/kai-technology.md)
 * [KAI Advantages](discover-kai/kai-advantages.md)
 * [Some clients use cases](discover-kai/some-clients-use-cases.md)
+* [Wanna Try ? Let's do a POC](discover-kai/wanna-try-lets-do-a-poc.md)
 
 ## TECHNICAL DOCUMENTATION <a href="#api" id="api"></a>
 
