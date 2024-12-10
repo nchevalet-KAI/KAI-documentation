@@ -27,7 +27,7 @@ description: 'With AUDIT module : Control and review your Data !'
 
 <figure><img src="../.gitbook/assets/Duplicate information exemple.png" alt=""><figcaption><p>Same subject, similar content. Is it useful to keep to documents ? Better to merge them ? Or leave it separated ?</p></figcaption></figure>
 
-* Missing subjects : Identify and list subjects with missing information from your users inquiries.
+* **Missing subjects** : Identify and list subjects with missing information from your users inquiries.
 
 <figure><img src="../.gitbook/assets/Missing subjects exemple.png" alt=""><figcaption><p>Some people are interested about the large volume packages it seems. Can you provide the documents to get the information?</p></figcaption></figure>
 
