@@ -20,7 +20,7 @@ Select JS, Python, or PHP SDK based on your technical preferences.
 {% endstep %}
 
 {% step %}
-### Try it easily with our demos
+### Try it easily with our templates
 
 Snippets and front-end exemples available in several langages to simplify the first steps.
 {% endstep %}

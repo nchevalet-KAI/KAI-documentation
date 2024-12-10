@@ -24,6 +24,6 @@ How to connect them and offer the power of Artificial Intelligence ?&#x20;
 
 
 
-Parler de LLM, mais pas trop en détail,  Rester grand public. Détails techiques a mettre coté Tech.
+Parler de LLM, mais pas trop en détail,  Rester grand public. Détails techiques à ne pas mettre.
 
 Rajouter un lien , pour en savoir plus vers la page Spécifications techniques.

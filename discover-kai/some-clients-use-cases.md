@@ -29,3 +29,12 @@ Deploying a chatbot with generative AI for front office teams\
 **Next** : Deploy an application for restaurants so they can directly resolve their issues.
 
 </details>
+
+Import / Embed from Wordpress , to check if possible&#x20;
+
+
+
+Wanna Try ? Let's do a POC
+
+-> Contact link
+

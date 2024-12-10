@@ -15,7 +15,7 @@ Find all endpoints on Postman [here](https://documenter.getpostman.com/view/3076
 
 <summary>Core : for basic and central functions</summary>
 
-Endpoints about the documents KAI accesses, analayze, indexes :
+Endpoints about the documents KAI accesses, analyze, indexes :
 
 [/api/orchestrator/differential-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#674dea09-1167-437b-a57a-c7a89186d438)\
 [/api/orchestrator/files/download](https://documenter.getpostman.com/view/30765019/2s9YXcek45#46b0acc7-ed4b-4e01-81a3-99afe06157bd)\

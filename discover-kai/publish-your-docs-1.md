@@ -12,7 +12,7 @@ icon: globe-pointer
 
 The search module is personnalisable and provides an answer to your question according these parameters :&#x20;
 
-* Multi-document : Is your questions retrieve informations from only one document to give you an answer or it can seazrch among several documents at the same time to aggregate and create a complete answer ?
+* Multi-document : Is your questions retrieve informations from only one document to give you an answer or it can search among several documents at the same time to aggregate and create a complete answer ?
 * Following questions : To deep dive into the topic of the current answer, we suggest new questions.
 
 <figure><img src="../.gitbook/assets/search-basic-exemple-with-multidocuments.png" alt=""><figcaption></figcaption></figure>
