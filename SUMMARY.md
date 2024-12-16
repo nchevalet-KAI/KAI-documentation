@@ -8,7 +8,7 @@
 * [KAI Solution : Audit](discover-kai/publish-your-docs.md)
 * [KAI Solution : Search](discover-kai/publish-your-docs-1.md)
 * [KAI Technology](discover-kai/kai-technology.md)
-* [KAI Advantages](discover-kai/kai-advantages.md)
+* [KAI Technology advantages](discover-kai/kai-advantages.md)
 * [Some clients use cases](discover-kai/some-clients-use-cases.md)
 
 ## TECHNICAL DOCUMENTATION <a href="#api" id="api"></a>
