@@ -16,5 +16,3 @@ KAI's Neural Semantic Graph provides a sophisticated, context-preserving method 
 
 ### Immediate Impacts on your Business
 
-{% include "../.gitbook/includes/kais-middleware-solution-....md" %}
-
