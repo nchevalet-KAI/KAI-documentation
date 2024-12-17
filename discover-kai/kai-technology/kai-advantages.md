@@ -1,7 +1,5 @@
 ---
 icon: microchip
-cover: ../../.gitbook/assets/google-deepmind-dxtkv8qLaY0-unsplash_Lowdef.jpg
-coverY: 7
 ---
 
 # KAI Technology advantages
