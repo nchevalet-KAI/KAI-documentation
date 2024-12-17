@@ -1,5 +1,6 @@
 ---
 icon: person-carry-box
+hidden: true
 ---
 
 # Some clients use cases

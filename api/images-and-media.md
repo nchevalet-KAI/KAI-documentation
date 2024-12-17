@@ -1,9 +1,10 @@
 ---
 icon: shield-check
 description: TO FILL
+hidden: true
 ---
 
-# Security and Certifications
+# Compliance, Security and Certifications
 
 GitBook allows you to add images and media easily to your docs. Simply drag a file into the editor, or use the file manager in the upper right corner to upload multiple images at once.
 

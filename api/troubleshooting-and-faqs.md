@@ -12,7 +12,7 @@ icon: square-exclamation
 
 It's a middleware, we plug to your architecture and knowledge bases and you connect to our AI through APIs.&#x20;
 
-We have an **API** with the [documentation](../api/api-presentation.md) of the endpoints available, several **SDKs** on [Github](../api/sdks.md) to install it easily ( Python, Typescript, PHP ) and templates examples (React, Vue).
+We have an **API** with the [documentation](api-presentation.md) of the endpoints available, several **SDKs** on [Github](sdks.md) to install it easily ( Python, Typescript, PHP ) and templates examples (React, Vue).
 
 </details>
 
