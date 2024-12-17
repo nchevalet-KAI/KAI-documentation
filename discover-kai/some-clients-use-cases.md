@@ -39,5 +39,9 @@ Wanna Try ? Let's do a POC
 
 -> Contact link
 
+### Immediate Impacts on your Business
+
+{% include "../.gitbook/includes/kais-middleware-solution-....md" %}
+
 
 
