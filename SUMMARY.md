@@ -16,7 +16,7 @@
 
 * [Getting started](api/editor.md)
 * [API](api/api-presentation.md)
-* [SDKs](api/sdks.md)
+* [SDKs and templates](api/sdks.md)
 * [Compliance, Security and Certifications](api/images-and-media.md)
 * [KAI](api/kai.md)
 * [Interactive blocks](api/interactive-blocks.md)
