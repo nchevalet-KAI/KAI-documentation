@@ -17,7 +17,7 @@
 * [API](api/api-presentation.md)
 * [SDKs](api/sdks.md)
 * [Compliance, Security and Certifications](api/images-and-media.md)
-* [Troubleshooting & FAQs](api/troubleshooting-and-faqs.md)
+* [FAQs](api/troubleshooting-and-faqs.md)
 * [KAI](api/kai.md)
 * [Interactive blocks](api/interactive-blocks.md)
 * [OpenAPI](api/openapi.md)
