@@ -11,14 +11,6 @@ icon: square-exclamation
 * It's a middleware, we plug to your architecture and knowledge bases and you connect to our AI through APIs.
 * We have an API with the documentation of the endpoints availables, several SDKs on Github to install it easily ( Python, Typescript, PHP ) and templates examples (React, Vue)&#x20;
 </details>
-
-### Audit Module
-
-<details>
-<summary>What is detected / managed ?  </summary>
-It's like a taskboard, in "detected" state, it lists all detected conflicts to check, you edit documents on your side, and the "managed" status will regenerate the indexation of the documents mentioned.&#x20;
-</details>
-
 <details>
 <summary>Which knowledge bases are compatible with your solution ?</summary>
   * We can plug on multiple knowledge bases :  SharePoint, Drive, Confluence, Notion, …&#x20;
@@ -46,4 +38,24 @@ It's like a taskboard, in "detected" state, it lists all detected conflicts to c
   * For the AI part, except our homemade personalized algorithm, we also use various LLM ( GPT 4-o, Sonnet 3.5,..). We are agnostic and can use other LLM on-demand according to your specific context.&#x20;
   * We use Kubernetes to orchestrate and manage the scalable and automated deployment of our containerized solution.&#x20;
   * We can provide more explanation on demand.&#x20;
+</details>
+
+### Audit Module
+
+<details>
+<summary>What is detected / managed ?  </summary>
+It's like a taskboard, in "detected" state, it lists all detected conflicts to check, you edit documents on your side, and the "managed" status will regenerate the indexation of the documents mentioned.&#x20;
+</details>
+
+### Search Module
+
+<details>
+<summary>Can I get an answer including several sourced documents ? </summary>
+Absolutely, in your parameters, with the API call, you just have to active the "multidocument" option to true.
+And the answer provided will be able to mention and mix several sources.&#x20;
+</details>
+<details>
+<summary>If I have many similar but potentially wrong informations in my knowledge base, what kind of answer we will get? </summary>
+If the multidocument parameter is on true, the /query endpoint will retrieve all documents mentionning the information, without selecting one answer. It's up to you, to choose the correct one. It's also why, we advise to do an Audit before.&#x20;
+If the multidocument parameter is on false, we will provide the most possible correct answer according to our algorith, but it's possible to retrieve a bad/outdated answer.
 </details>
