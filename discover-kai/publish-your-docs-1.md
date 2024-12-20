@@ -16,3 +16,13 @@ The search module is personnalisable and provides an answer to your question acc
 * Following questions : To deep dive into the topic of the current answer, we suggest new questions.
 
 <figure><img src="../.gitbook/assets/search-basic-exemple-with-multidocuments.png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Have a look on our documentation [API](../api/api-presentation.md#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
+
+2 basic functions to potentially combine :&#x20;
+
+* **identify-specific-document** to chat with the instance to precise and find the good question
+* **query** to get an answer
+{% endhint %}
+
