@@ -3,7 +3,7 @@ icon: code
 description: Our SDKs are available on Github.
 ---
 
-# SDKs
+# SDKs and templates
 
 {% embed url="https://github.com/k-ai-Documentation/k-ai-Documentation" %}
 
@@ -14,6 +14,7 @@ We offer SDKs in JavaScript, PHP, and Python to simplify API integration. Code e
 | Javascript | [javascript](https://github.com/k-ai-Documentation/sdk-js-ts) |     1.0     |
 |     PHP    |      [PHP](https://github.com/k-ai-Documentation/sdk-php)     |     1.0     |
 |   Python   |   [python](https://github.com/k-ai-Documentation/sdk-python)  |     1.0     |
+|    Ruby    |     [ruby](https://github.com/k-ai-Documentation/sdk-ruby)    |     1.0     |
 
 ### Templates
 
