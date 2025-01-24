@@ -21,11 +21,15 @@ description: 'With AUDIT module : Control and review your Data !'
 
 * **Conflict information** : List documents with potential content conflicts, or obselete information.&#x20;
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Wrong phone number , but for which one ?</p></figcaption></figure>
+
 <figure><img src="../.gitbook/assets/Conflict information exemple.png" alt=""><figcaption><p>So, what is the correct answer ? 500€ maximum value or no ?</p></figcaption></figure>
 
 * **Duplicate content** : Highlight subjects with duplicate content.
 
-<figure><img src="../.gitbook/assets/Duplicate information exemple.png" alt=""><figcaption><p>Same subject, similar content. Is it useful to keep to documents ? Better to merge them ? Or leave it separated ?</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Same subject, similar content. Is it useful to keep to documents ? Better to merge them ? Or leave it separated ? At least, the information is the same !</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Duplicate information exemple.png" alt=""><figcaption><p>Another case of similarities, in french here.</p></figcaption></figure>
 
 * **Missing subjects** : Identify and list subjects with missing information from your users inquiries.
 
