@@ -7,6 +7,7 @@
 * [Quickstart](discover-kai/quickstart.md)
 * [KAI Solution : Audit](discover-kai/publish-your-docs.md)
 * [KAI Solution : Search](discover-kai/publish-your-docs-1.md)
+* [KAI Solution : Semantic graph](discover-kai/kai-solution-semantic-graph.md)
 * [KAI Technology](discover-kai/kai-technology/README.md)
   * [KAI Technology advantages](discover-kai/kai-technology/kai-advantages.md)
 * [FAQs](api/troubleshooting-and-faqs.md)
