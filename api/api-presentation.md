@@ -74,6 +74,15 @@ Endpoints about the documents available :\
 
 <details>
 
+<summary><strong>Chatbot</strong> : for conversation and keep context of the previous messages</summary>
+
+[/api/chatbot/message](https://documenter.getpostman.com/view/30765019/2s9YXcek45#80df8657-4c6b-4865-aa08-60ebc62c0ac8)\
+[/api/chatbot/get-conversation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#a4aee8ea-dee5-449a-9e96-6b7ab837ec9e)
+
+</details>
+
+<details>
+
 <summary><strong>Semantic Graph</strong>: for raw results related to graph generation from provided documents</summary>
 
 Endpoints about the semantic nodes :\
