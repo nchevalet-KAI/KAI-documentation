@@ -11,6 +11,7 @@
 * [KAI Solution : Search](discover-kai/publish-your-docs-1/README.md)
   * [KAI Solution : Chatbot](discover-kai/publish-your-docs-1/kai-solution-chatbot.md)
 * [KAI Solution : Semantic graph](discover-kai/kai-solution-semantic-graph.md)
+* [Some Use Cases](https://k-ai.ai/use-cases/)
 * [FAQs](api/troubleshooting-and-faqs.md)
 * [Some clients use cases](discover-kai/some-clients-use-cases.md)
 
