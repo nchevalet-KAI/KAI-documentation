@@ -38,7 +38,8 @@ End points about the system :
 <summary><strong>Audit</strong>: for the audit module functions</summary>
 
 Endpoint about the documents to check :\
-[/api/audit/documents-to-manage](https://documenter.getpostman.com/view/30765019/2s9YXcek45#402f9e1c-996b-4f19-99b4-c225743d12c5)
+[/api/audit/documents-to-manage](https://documenter.getpostman.com/view/30765019/2s9YXcek45#402f9e1c-996b-4f19-99b4-c225743d12c5)\
+[/api/audit/get-anomalies-for-document](https://documenter.getpostman.com/view/30765019/2s9YXcek45#bcf5acd3-d489-4340-b9b4-fe7a4b72ff04)
 
 Endpoints about the duplicates :\
 [/api/audit/duplicated-information\
