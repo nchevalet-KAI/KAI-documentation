@@ -1,5 +1,4 @@
 ---
-hidden: true
 icon: globe-pointer
 ---
 
@@ -10,3 +9,6 @@ The chatbot add-on is an add-on solution, derivate from the Search module. It wa
 In our API, it's one endpoint : chatbot/message. Find how to use it here : [api-presentation.md](../../api/api-presentation.md "mention") or directly on [Postman](https://documenter.getpostman.com/view/30765019/2s9YXcek45#80df8657-4c6b-4865-aa08-60ebc62c0ac8).\
 
 
+In the video below, the AI will help you to define and precise your questions to get the exact answer :
+
+{% embed url="https://www.youtube.com/watch?v=i7UlPFbuvL0" %}

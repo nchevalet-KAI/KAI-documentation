@@ -15,11 +15,11 @@ description: 'With AUDIT module : Control and review your Data !'
 
 #### 4 powerful functions
 
-* **Documents to manage** : List all documents where a potential conflict or duplicated content is present.
+* **Documents to manage** : List all documents where a potential conflict or duplicated content is present. And then, get all conflict or duplications for a given document.
 
 <div align="center" data-full-width="true"><figure><img src="../.gitbook/assets/Documents to manage exemple.png" alt="" width="166"><figcaption><p>Get all documents involved in the audit results</p></figcaption></figure></div>
 
-* **Conflict information** : List documents with potential content conflicts, or obselete information.&#x20;
+* **Conflict information** : List all conflicts or obsolete information inside your documents of your knowledge base.
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Wrong phone number , but for which one ?</p></figcaption></figure>
 

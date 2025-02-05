@@ -12,7 +12,7 @@ icon: square-exclamation
 
 It's a middleware, we plug to your architecture and knowledge bases and you connect to our AI through APIs.&#x20;
 
-We have an **API** with the [documentation](api-presentation.md) of the endpoints available, several **SDKs** on [Github](sdks.md) to install it easily ( Python, Typescript, PHP ) and templates examples (React, Vue).
+We have an **API** with the [documentation](api-presentation.md) of the endpoints available, several **SDKs** on [Github](sdks.md) to install it easily ( Python, Typescript, PHP, Ruby ) and templates examples (React, Vue, Streamlit).
 
 </details>
 
@@ -20,7 +20,9 @@ We have an **API** with the [documentation](api-presentation.md) of the endpoint
 
 <summary>Which knowledge bases are compatible with your solution ?</summary>
 
-We can plug on multiple knowledge bases : SharePoint, Drive, Confluence, Notion, …
+We can plug on multiple knowledge bases : SharePoint, Drive, Confluence, Notion, Service Now,…
+
+We can use the common connectors of the market, but also can connect on your in-house Knowledge base. In this case, we can check together the technical requirements.
 
 </details>
 
@@ -38,8 +40,18 @@ It depends on your documents, types, sizes, .. it can takes few minutes to few d
 
 Our algorithm is based on 2 special bricks :&#x20;
 
-* Our file parsers, which read and translate all your data into readable texts.&#x20;
-* Our homemade semantic graph generator.
+* Our file parsers, which read and translate all your data into readable texts.  We will be able to read texts, tables and most of charts, graphs, diagrams,.. we can find in presentations.&#x20;
+
+- Our homemade semantic graph generator. We translate non-text information into textual and linear information, human readable.
+
+</details>
+
+<details>
+
+<summary>Which kind of document can you read ?</summary>
+
+* We cover most current written formats: pdf, ppt, doc, text, excel, ..
+* However, we do not cover the audio and video formats for the moment.
 
 </details>
 
@@ -79,6 +91,24 @@ We deploy on SAAS or On-premise. \
 It's like a taskboard, in "detected" state, it lists all detected conflicts to check, you edit documents on your side, and the "managed" status will regenerate the indexation of the documents mentioned.
 
 </details>
+
+<details>
+
+<summary>What is missing subjects ?</summary>
+
+We collect the queries from the search and chatbot modules, made by your users, and aggregate all the missing answers of our system due to a lack of information in your knowledge base.&#x20;
+
+</details>
+
+<details>
+
+<summary>Can I check all anomalies, conflicts and duplicates in a given document ?</summary>
+
+Yes, with the API endpoint : /documents-to-manage,  you will be able to get all the documents with a issue about a conflict or a duplication. Then, use the&#x20;
+
+</details>
+
+
 
 ### Search Module
 
