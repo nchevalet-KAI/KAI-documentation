@@ -9,12 +9,12 @@ description: Our SDKs are available on Github.
 
 We offer SDKs in JavaScript, PHP, and Python to simplify API integration. Code examples for each language's SDK demonstrate common use cases and are available in the respective subrepositories. These SDKs streamline interaction with our API endpoints, making queries easier. Check the subrepositories for examples :
 
-|     SDK    |                             folder                            |  last SDK version |
-| :--------: | :-----------------------------------------------------------: | :---------------: |
-| Javascript | [javascript](https://github.com/k-ai-Documentation/sdk-js-ts) | Jan 22, 2025 (v2) |
-|   Python   |   [python](https://github.com/k-ai-Documentation/sdk-python)  | Jan 22, 2025 (v2) |
-|    Ruby    |     [ruby](https://github.com/k-ai-Documentation/sdk-ruby)    |    Feb 03, 2025   |
-|     PHP    |      [PHP](https://github.com/k-ai-Documentation/sdk-php)     |    Nov 26, 2024   |
+|     SDK    |                             folder                            | branch SDK version (update) |
+| :--------: | :-----------------------------------------------------------: | :-------------------------: |
+| Javascript | [javascript](https://github.com/k-ai-Documentation/sdk-js-ts) |      version 2.0 (2025)     |
+|   Python   |   [python](https://github.com/k-ai-Documentation/sdk-python)  |      version 2.0 (2025)     |
+|    Ruby    |     [ruby](https://github.com/k-ai-Documentation/sdk-ruby)    |         main (2025)         |
+|     PHP    |      [PHP](https://github.com/k-ai-Documentation/sdk-php)     |    version 2.0 (Nov 2024)   |
 
 ### Templates
 
