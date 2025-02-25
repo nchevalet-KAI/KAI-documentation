@@ -20,6 +20,11 @@ Endpoints about the documents KAI accesses, analyze, indexes :
 [/api/orchestrator/differential-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#674dea09-1167-437b-a57a-c7a89186d438)\
 [/api/orchestrator/files/download](https://documenter.getpostman.com/view/30765019/2s9YXcek45#46b0acc7-ed4b-4e01-81a3-99afe06157bd)\
 [/api/orchestrator/list-docs](https://documenter.getpostman.com/view/30765019/2s9YXcek45#d8dfec95-b0fe-440d-b403-2bea25826841)\
+[/api/orchestrator/list-indexed-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#294d0359-a9dd-47ff-bb37-944246977520)
+
+[/api/orchestrator/last-indexation\
+](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ef88cb66-757a-43b5-a1f4-5ab3b675805e)[/api/orchestrator/last-finished-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#0a0acb23-3b21-483c-b278-2604f40040d4)\
+\
 [/api/orchestrator/stats/count-detected-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#a5239f86-408f-4a75-8dff-c144769965e6)\
 [/api/orchestrator/stats/count-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ee1a63bf-ada8-4008-835b-109b23e92e74)\
 [/api/orchestrator/stats/count-indexable-documents\
@@ -51,6 +56,11 @@ Endpoints about the conflicts :\
 
 Endpoint about the missing informations from your users inquiries :\
 [/api/audit/missing-subjects](https://documenter.getpostman.com/view/30765019/2s9YXcek45#8b07ae67-eaaa-4525-bd23-d0c6c85123cf)
+
+Endpoints about the statistics of the audit :\
+[/api/audit/count-conflict-information](https://documenter.getpostman.com/view/30765019/2s9YXcek45#9a61b158-067e-4079-b0ba-d23b1cdfb8b4)\
+[/api/audit/count-duplicated-information\
+](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ad7a45af-6e87-4612-b491-2d8617fbe68f)[/api/audit/count-missing-subjects](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ee43918e-f225-4565-ae58-8a4be3ba0b96)
 
 </details>
 
