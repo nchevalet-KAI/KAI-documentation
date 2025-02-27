@@ -12,6 +12,8 @@ KAI Semantic Graph is the core of our technology, our Search and Audit module us
 
 If you want to create application who use directly our semantic graph to have the ability to exploit knowledge from your databases, you are at the right place.
 
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
 **Some examples of technical use cases**
 
 #### Improve RAG accuracy
@@ -27,12 +29,6 @@ With KAI, you can use our endpoint ([/api/semantic-graph/identify-nodes](https:/
 For metrics, you want to know exactly all subjects covered by your knowledge base and you want to know for one subject, which documents is involved.
 
 You can use this endpoint ([/api/semantic-graph/nodes](https://documenter.getpostman.com/view/30765019/2s9YXcek45#811547e7-b9b0-4299-b3f1-2d9eb5e17cf9)) to retrieve all semantic nodes of KAI Semantic graph and build on top a graph based representation of your knowledge.
-
-
-
-
-
-
 
 
 
