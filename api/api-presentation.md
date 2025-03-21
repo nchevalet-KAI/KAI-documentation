@@ -1,13 +1,13 @@
 ---
-icon: webhook
 description: >-
   An API testing interface is available on Postman :
   https://documenter.getpostman.com/view/30765019/2s9YXcek45
+icon: webhook
 ---
 
 # API
 
-Our API is organized into four types of endpoints :
+Our API is organized into five types of endpoints :
 
 Find all endpoints on Postman [here](https://documenter.getpostman.com/view/30765019/2s9YXcek45) .
 
@@ -17,24 +17,26 @@ Find all endpoints on Postman [here](https://documenter.getpostman.com/view/3076
 
 Endpoints about the documents KAI accesses, analyze, indexes :
 
-[/api/orchestrator/differential-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#674dea09-1167-437b-a57a-c7a89186d438)\
-[/api/orchestrator/files/download](https://documenter.getpostman.com/view/30765019/2s9YXcek45#46b0acc7-ed4b-4e01-81a3-99afe06157bd)\
-[/api/orchestrator/list-docs](https://documenter.getpostman.com/view/30765019/2s9YXcek45#d8dfec95-b0fe-440d-b403-2bea25826841)\
-[/api/orchestrator/list-indexed-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#294d0359-a9dd-47ff-bb37-944246977520)
+[/api/orchestrator/differential-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#674dea09-1167-437b-a57a-c7a89186d438) .. to launch a update of the indexation\
+[/api/orchestrator/files/download](https://documenter.getpostman.com/view/30765019/2s9YXcek45#46b0acc7-ed4b-4e01-81a3-99afe06157bd) .. to download a file\
+[/api/orchestrator/list-docs](https://documenter.getpostman.com/view/30765019/2s9YXcek45#d8dfec95-b0fe-440d-b403-2bea25826841) .. to list all your documents in your KB\
+[/api/orchestrator/list-indexed-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#294d0359-a9dd-47ff-bb37-944246977520) .. to list all the documents we indexed&#x20;
 
-[/api/orchestrator/last-indexation\
-](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ef88cb66-757a-43b5-a1f4-5ab3b675805e)[/api/orchestrator/last-finished-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#0a0acb23-3b21-483c-b278-2604f40040d4)\
-\
-[/api/orchestrator/stats/count-detected-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#a5239f86-408f-4a75-8dff-c144769965e6)\
+[/api/orchestrator/last-indexation ](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ef88cb66-757a-43b5-a1f4-5ab3b675805e).. to get the date of the last indexation[\
+](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ef88cb66-757a-43b5-a1f4-5ab3b675805e)[/api/orchestrator/last-finished-indexation](https://documenter.getpostman.com/view/30765019/2s9YXcek45#0a0acb23-3b21-483c-b278-2604f40040d4) .. to get the end date of the last indexation
+
+Endpoints about the statistics of the core functions:
+
+[/api/orchestrator/stats/count-detected-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#a5239f86-408f-4a75-8dff-c144769965e6) \
 [/api/orchestrator/stats/count-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#ee1a63bf-ada8-4008-835b-109b23e92e74)\
 [/api/orchestrator/stats/count-indexable-documents\
-](https://documenter.getpostman.com/view/30765019/2s9YXcek45#29c64934-89e8-4cb9-9cbd-c8df6ebbfe9d)[/api/orchestrator/stats/count-indexed-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#a5239f86-408f-4a75-8dff-c144769965e6)
+](https://documenter.getpostman.com/view/30765019/2s9YXcek45#29c64934-89e8-4cb9-9cbd-c8df6ebbfe9d)[/api/orchestrator/stats/count-indexed-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#a5239f86-408f-4a75-8dff-c144769965e6)\
+[/api/orchestrator/stats/count-inprogress-indexation-documents](https://documenter.getpostman.com/view/30765019/2s9YXcek45#8a926014-4b77-471f-96f5-68b24605231d)
 
 End points about the system :
 
 [/global-health\
-](https://documenter.getpostman.com/view/30765019/2s9YXcek45#847a6099-2c21-4101-bced-e345b43bd88e)[/health\
-](https://documenter.getpostman.com/view/30765019/2s9YXcek45#257542f2-cb13-4a5a-b657-464f039c43e7)[/version](https://documenter.getpostman.com/view/30765019/2s9YXcek45#b8b9d51e-295d-4535-9c2c-cacb35120ccf)
+](https://documenter.getpostman.com/view/30765019/2s9YXcek45#847a6099-2c21-4101-bced-e345b43bd88e)[/health](https://documenter.getpostman.com/view/30765019/2s9YXcek45#257542f2-cb13-4a5a-b657-464f039c43e7)
 
 </details>
 

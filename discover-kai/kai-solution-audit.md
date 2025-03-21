@@ -1,11 +1,11 @@
 ---
-icon: globe-pointer
 description: 'With AUDIT module : Control and review your Data !'
+icon: globe-pointer
 ---
 
 # KAI Solution : Audit
 
-### With the AUDIT module : Control and review your Data !
+With the AUDIT module : Control and review your Data !
 
 * Automatically and continuously analyses and diagnoses your knowledge with AI.
 * **Identifies contradictory data, duplicate documents, obsolete files, missing subjects**, as well as their exact placements, even as new information emerge.
@@ -19,11 +19,11 @@ description: 'With AUDIT module : Control and review your Data !'
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>Get all documents involved in the audit results</p></figcaption></figure>
 
-* **2 / Conflict information** : List all conflicts or obsolete information inside your documents of your knowledge base.
+* **2 / Conflict information** : List all conflicts or obsolete information inside your documents of your knowledge base and an explanation about the reason we detected it.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Wrong phone number , but for which one ?</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption><p>About the weight of package, do they have a limitation ?</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Conflict information exemple.png" alt=""><figcaption><p>So, what is the correct answer ? 500€ maximum value or no ?</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption><p>Quelle valeur limite pour une montre finalement ? </p></figcaption></figure>
 
 * **3 / Duplicate content** : Highlight subjects with duplicate content.
 
