@@ -7,7 +7,7 @@
 * [Quickstart](discover-kai/quickstart.md)
 * [KAI Technology](discover-kai/kai-technology/README.md)
   * [KAI Technology advantages](discover-kai/kai-technology/kai-advantages.md)
-* [KAI Solution : Audit](discover-kai/kai-solution-audit.md)
+* [KAI Solution : Audit Knowledge](discover-kai/kai-solution-audit-knowledge.md)
 * [KAI Solution : Search](discover-kai/kai-solution-search/README.md)
   * [KAI Solution : Chatbot](discover-kai/kai-solution-search/kai-solution-chatbot.md)
 * [KAI Solution : Semantic graph](discover-kai/kai-solution-semantic-graph.md)

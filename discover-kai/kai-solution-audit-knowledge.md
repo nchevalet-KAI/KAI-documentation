@@ -1,11 +1,11 @@
 ---
-description: 'With AUDIT module : Control and review your Data !'
+description: 'With the AUDIT KNOWLEDGE module : Control and review your Data !'
 icon: globe-pointer
 ---
 
-# KAI Solution : Audit
+# KAI Solution : Audit Knowledge
 
-With the AUDIT module : Control and review your Data !
+With the AUDIT KNOWLEDGE module : Control and review your Data !
 
 * Automatically and continuously analyses and diagnoses your knowledge with AI.
 * **Identifies contradictory data, duplicate documents, obsolete files, missing subjects**, as well as their exact placements, even as new information emerge.
@@ -46,5 +46,5 @@ _Hint : We also have an endpoint to provide you all conflicts and duplications c
 
 
 {% hint style="info" %}
-<mark style="background-color:purple;">You can find all the endpoints linked to the audit module in detail in this</mark> [<mark style="background-color:purple;">section here</mark>](https://k-ai.gitbook.io/knowledge-ai/api/api-presentation#audit-for-the-audit-module-functions) <mark style="background-color:purple;">or on</mark> [<mark style="background-color:purple;">Postman</mark>](https://documenter.getpostman.com/view/30765019/2s9YXcek45#6a14be89-bc82-4f20-a1eb-e11623f048ae)<mark style="background-color:purple;">.</mark>&#x20;
+<mark style="background-color:purple;">You can find all the endpoints linked to the audit knowledge module in detail in this</mark> [<mark style="background-color:purple;">section here</mark>](https://k-ai.gitbook.io/knowledge-ai/api/api-presentation#audit-for-the-audit-module-functions) <mark style="background-color:purple;">or on</mark> [<mark style="background-color:purple;">Postman</mark>](https://documenter.getpostman.com/view/30765019/2s9YXcek45#6a14be89-bc82-4f20-a1eb-e11623f048ae)<mark style="background-color:purple;">.</mark>&#x20;
 {% endhint %}
