@@ -1,6 +1,6 @@
 ---
 description: 'With the AUDIT KNOWLEDGE module : Control and review your Data !'
-icon: globe-pointer
+icon: brain-circuit
 ---
 
 # KAI Solution : Audit Knowledge

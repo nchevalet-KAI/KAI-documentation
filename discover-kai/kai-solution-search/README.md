@@ -1,5 +1,5 @@
 ---
-icon: globe-pointer
+icon: folder-magnifying-glass
 ---
 
 # KAI Solution : Search
