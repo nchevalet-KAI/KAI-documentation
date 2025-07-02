@@ -19,7 +19,13 @@
 ## TECHNICAL DOCUMENTATION <a href="#api" id="api"></a>
 
 * [Getting started](api/editor.md)
-* [API](api/api-presentation.md)
+* [API](api/api-presentation/README.md)
+  * [documents](api/api-presentation/documents.md)
+  * [Conversation](api/api-presentation/conversation.md)
+  * [Orchestrator](api/api-presentation/orchestrator.md)
+  * [Search](api/api-presentation/search.md)
+  * [Semantic graph](api/api-presentation/semantic-graph.md)
+  * [Audit](api/api-presentation/audit.md)
 * [SDKs and templates](api/sdks.md)
 * [Compliance, Security and Certifications](api/images-and-media.md)
 * [KAI](api/kai.md)

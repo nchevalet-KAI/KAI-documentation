@@ -18,7 +18,7 @@ The search module is personnalisable and provides an answer to your question acc
 <figure><img src="../../.gitbook/assets/search-basic-exemple-with-multidocuments.png" alt=""><figcaption><p>Basic presentation of the search (/query fonction) with a search bar</p></figcaption></figure>
 
 {% hint style="info" %}
-Have a look on our documentation [API](../../api/api-presentation.md#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
+Have a look on our documentation [API](../../api/api-presentation/#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
 
 2 basic functions to potentially combine :&#x20;
 
