@@ -82,13 +82,38 @@ We deploy on SAAS or On-premise. \
 
 </details>
 
-### Audit Module
+### Audit Knowledge Module
 
 <details>
 
-<summary>What is detected / managed ?</summary>
+<summary>What is detected / managed / ignored ?</summary>
 
-It's like a taskboard, in "detected" state, it lists all detected conflicts to check, you edit documents on your side, and the "managed" status will regenerate the indexation of the documents mentioned.
+It's like a taskboard, in "detected" state, it lists all detected conflicts to check.&#x20;
+
+Once you edit documents on your side, change the state to "managed" to signal a real anomaly and to "ignored" to indicate a non-useful anomaly.
+
+Don't forget to generate a new indexation (partial indexation of updated documents) to update the audit report and use a "updated" and cleaned knowledge base with the search of chatbot functions.
+
+</details>
+
+<details>
+
+<summary>The anomaly (conflict or duplicate) state changed to "disappeared" or "redetected", what happened ?</summary>
+
+These two statuses may appear after you reindex your documents database.
+
+* **"Redetected"** means that an anomaly previously marked as "managed" has been found again after the reindex. This suggests that the anomaly still exists and wasn't truly resolved. It has been redetected within your documents.
+* **"Disappeared"** indicates that an anomaly previously detected is no longer found after the reindex. This could happen because a referenced document was updated or deleted, making the anomaly irrelevant or no longer detectable.
+
+</details>
+
+<details>
+
+<summary>Can I check all anomalies, conflicts and duplicates in a given document ?</summary>
+
+Yes, with the API endpoint : /documents-to-manage,  you will be able to get all the documents with a issue about a conflict or a duplication.&#x20;
+
+Then, use the endpoint : audit/get-anomalies-for-document to get all anomalies for the given document. You can also filter the retrieved anomalies with a given state ("detected, "managed, ...).
 
 </details>
 
@@ -99,16 +124,6 @@ It's like a taskboard, in "detected" state, it lists all detected conflicts to c
 We collect the queries from the search and chatbot modules, made by your users, and aggregate all the missing answers of our system due to a lack of information in your knowledge base.&#x20;
 
 </details>
-
-<details>
-
-<summary>Can I check all anomalies, conflicts and duplicates in a given document ?</summary>
-
-Yes, with the API endpoint : /documents-to-manage,  you will be able to get all the documents with a issue about a conflict or a duplication. Then, use the&#x20;
-
-</details>
-
-
 
 ### Search Module
 

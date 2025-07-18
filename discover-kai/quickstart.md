@@ -1,22 +1,8 @@
 ---
-icon: bullseye-arrow
 description: In a few words ... What's KAI ?
+icon: bullseye-arrow
 cover: ../.gitbook/assets/Capture d’écran 2024-12-05 à 14.23.10.png
 coverY: 0
-layout:
-  cover:
-    visible: true
-    size: full
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: true
 ---
 
 # Quickstart

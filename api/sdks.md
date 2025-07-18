@@ -18,7 +18,10 @@ We offer SDKs in JavaScript, PHP, and Python to simplify API integration. Code e
 
 ### Templates
 
-We also provide a set of templates that demonstrate how to use the K-ai SDKs to interact with K-ai service in different languages.
+We also provide a set of partial templates that demonstrate how to use some functions of the K-ai SDKs to interact with K-ai service in different languages.
 
 <table><thead><tr><th width="295" align="center">Senario</th><th width="158" align="center">Search </th><th width="146" align="center">Chatbot</th><th align="center">Audit</th></tr></thead><tbody><tr><td align="center"><strong>React JS</strong></td><td align="center"><a href="https://github.com/k-ai-Documentation/react-demo">Search</a></td><td align="center"><a href="https://github.com/k-ai-Documentation/vue-demo-chatbot">Chatbot</a></td><td align="center"><a href="https://github.com/k-ai-Documentation/k-ai-Documentation/blob/main/vuesearchurl">Audit</a></td></tr><tr><td align="center"><strong>Vue JS</strong></td><td align="center"><a href="https://github.com/k-ai-Documentation/vue-demo">Search</a></td><td align="center"><a href="https://github.com/k-ai-Documentation/vue-demo-chatbot">Chatbot</a></td><td align="center"><a href="https://github.com/k-ai-Documentation/vue-demo-km-audit">Audit</a></td></tr><tr><td align="center"><strong>Microsoft Copilot Studio</strong> </td><td align="center"><a href="https://github.com/k-ai-Documentation/streamlit-demo">Search</a></td><td align="center"></td><td align="center"></td></tr><tr><td align="center"><strong>Streamlit (Python)</strong></td><td align="center"><a href="https://github.com/k-ai-Documentation/kai-chatbot-microsoft-copilot-studio">Search</a></td><td align="center"></td><td align="center"></td></tr></tbody></table>
 
+{% hint style="info" %}
+**For a all-in-one template, with all functionalities ready-to-use, and a customized interface following your brand identity, don't hesitate to contact us !**
+{% endhint %}

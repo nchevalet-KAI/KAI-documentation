@@ -13,12 +13,11 @@ icon: folder-magnifying-glass
 The search module is personnalisable and provides an answer to your question according these parameters :&#x20;
 
 * Multi-document : Is your questions retrieve informations from only one document to give you an answer or it can search among several documents at the same time to aggregate and create a complete answer ?
-* Following questions : To deep dive into the topic of the current answer, we suggest new questions.
 
-<figure><img src="../../.gitbook/assets/search-basic-exemple-with-multidocuments.png" alt=""><figcaption><p>Basic presentation of the search (/query fonction) with a search bar</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-Have a look on our documentation [API](../../api/api-presentation/#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
+Have a look on our documentation [API](../api/api-presentation/#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
 
 2 basic functions to potentially combine :&#x20;
 
