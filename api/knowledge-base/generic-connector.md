@@ -1,0 +1,6 @@
+---
+hidden: true
+---
+
+# Generic connector
+

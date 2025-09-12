@@ -1,5 +1,5 @@
 ---
-icon: pen-to-square
+icon: play
 ---
 
 # Getting started
@@ -23,5 +23,11 @@ Select JS, Python, or PHP SDK based on your technical preferences.
 ### Try it easily with our templates
 
 Snippets and front-end exemples available in several langages to simplify the first steps.
+{% endstep %}
+
+{% step %}
+### Deployment through our partners
+
+Deploy us from your snowflake
 {% endstep %}
 {% endstepper %}
