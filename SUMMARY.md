@@ -29,6 +29,7 @@
 * [SDKs and templates](api/sdks.md)
 * [Knowledge base](api/knowledge-base/README.md)
   * [Microsoft Sharepoint (documents)](api/knowledge-base/microsoft-sharepoint-documents.md)
+  * [Copy of Microsoft Sharepoint (sites)](api/knowledge-base/copy-of-microsoft-sharepoint-sites.md)
   * [Atlassian Confluence](api/knowledge-base/atlassian-confluence.md)
   * [Service Now](api/knowledge-base/service-now.md)
   * [Google Drive](api/knowledge-base/google-drive.md)
