@@ -30,6 +30,7 @@
 * [Knowledge base](api/knowledge-base/README.md)
   * [Microsoft Sharepoint (documents)](api/knowledge-base/microsoft-sharepoint-documents.md)
   * [Microsoft Sharepoint (sites)](api/knowledge-base/microsoft-sharepoint-sites.md)
+  * [Snowflake stage](api/knowledge-base/snowflake-stage.md)
   * [Atlassian Confluence](api/knowledge-base/atlassian-confluence.md)
   * [Service Now](api/knowledge-base/service-now.md)
   * [Google Drive](api/knowledge-base/google-drive.md)
