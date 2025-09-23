@@ -29,6 +29,7 @@
 * [SDKs and templates](api/sdks.md)
 * [Knowledge base](api/knowledge-base/README.md)
   * [Microsoft Sharepoint (online)](api/knowledge-base/microsoft-sharepoint-online.md)
+  * [Atlassian Confluence](api/knowledge-base/atlassian-confluence.md)
   * [Generic connector](api/knowledge-base/generic-connector.md)
 * [Use KAI through our partners](api/use-kai-through-our-partners/README.md)
   * [Snowflake](api/use-kai-through-our-partners/snowflake.md)
