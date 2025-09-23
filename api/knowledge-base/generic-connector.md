@@ -1,6 +1,5 @@
 ---
 description: Connect KAI to any kind of Knowledge Base through our generic connector
-hidden: true
 ---
 
 # Generic connector
