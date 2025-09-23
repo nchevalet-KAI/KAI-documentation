@@ -28,7 +28,7 @@
   * [Semantic graph](api/api-presentation/semantic-graph.md)
 * [SDKs and templates](api/sdks.md)
 * [Knowledge base](api/knowledge-base/README.md)
-  * [Microsoft Sharepoint (online)](api/knowledge-base/microsoft-sharepoint-online.md)
+  * [Microsoft Sharepoint (documents)](api/knowledge-base/microsoft-sharepoint-documents.md)
   * [Atlassian Confluence](api/knowledge-base/atlassian-confluence.md)
   * [Service Now](api/knowledge-base/service-now.md)
   * [Google Drive](api/knowledge-base/google-drive.md)
