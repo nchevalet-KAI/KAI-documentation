@@ -1,6 +1,8 @@
-# Microsoft Sharepoint (online)
+---
+description: To connect KAI with Microsoft Sharepoint, we use Microsoft Graph API
+---
 
-To connect KAI with Microsoft Sharepoint, we use [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/use-the-api)&#x20;
+# Microsoft Sharepoint (online)
 
 Need : your Microsoft Azure Tenant Administrator
 
