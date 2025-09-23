@@ -51,3 +51,6 @@ Final output :&#x20;
 * user : the username of the created snowflake user on step 1
 * password : the programatic access token created on step 2
 * stage name : the name of the stage you want to connect
+* type :&#x20;
+  * EXTERNAL : In this case, you want to connect KAI (saas mode) into your snowflake stage
+  * INTERNAL : You use KAI in the snowflake marketplace AND you want to connect a stage who is in the same account where is installed the KAI Snowflake marketplace app. In this case, you don't have to put real account, role and user value, it will be automatically added from snowflake environment variable retrieved by the app (Put XXX value to don't let it blank). You will need to grant access to the stage to the kai app role.
