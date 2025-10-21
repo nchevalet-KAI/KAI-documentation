@@ -2,7 +2,7 @@
 icon: folder-magnifying-glass
 ---
 
-# KAI Solution : Search
+# Search
 
 ### With the Search module : Exploit your Knowledge and maximize your knowledge potential !
 
@@ -14,9 +14,9 @@ The search module is personnalisable and provides an answer to your question acc
 
 * Multi-document : Is your questions retrieve informations from only one document to give you an answer or it can search among several documents at the same time to aggregate and create a complete answer ?
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-Have a look on our documentation [API](../api/api-presentation/#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
+Have a look on our documentation [API](../../api/api-presentation/#search-for-search-module-functions) Search functions, to have a better knowledge on the capabilities.&#x20;
 {% endhint %}
 

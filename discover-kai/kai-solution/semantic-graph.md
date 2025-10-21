@@ -2,7 +2,7 @@
 icon: globe-pointer
 ---
 
-# KAI Solution : Semantic graph
+# Semantic graph
 
 When KAI is deployed and connected on your knowledge base, a semantic graph is automatically produced from all of your KB's documents.
 
@@ -12,7 +12,7 @@ KAI Semantic Graph is the core of our technology, our Search and Audit module us
 
 If you want to create application who use directly our semantic graph to have the ability to exploit knowledge from your databases, you are at the right place.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 **Some examples of technical use cases**
 
