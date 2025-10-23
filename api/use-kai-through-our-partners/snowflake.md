@@ -12,7 +12,7 @@ Here some technical and guide details to help you to use us through Snowflake.
 
 #### Large language model
 
-Currently we use 2 models :&#x20;
+Currently we use these models :&#x20;
 
 * Claude-3-7-sonnet
 * openai-gpt-4.1
