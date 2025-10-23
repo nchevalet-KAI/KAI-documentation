@@ -30,6 +30,30 @@ When you deploy KAI app, before activate it, you need to add a reference to an e
 
 This [external access integration](https://docs.snowflake.com/en/developer-guide/external-network-access/creating-using-external-network-access) will allow to the KAI app to call your knowledge base through API.
 
+### Deploy KAI app
+
+#### Grant all privileges and references
+
+You should grant all privileges and references, here why we asking these privileges and references :
+
+* BIND SERVICE ENDPOINT : Allow us to expose our API (Ingress)
+* CREATE COMPUTE POOL : Allow us to create machines to host our application
+* CREATE WAREHOUSE : Need to generate related datas (semantic graphs, audit, ...) for each KAI instances you create.
+* CREATE DATABASE : All datas generated will be stored into a specific database on your Snowflake account.
+* IMPORTED PRIVILEGES ON SNOWFLAKE DB: Allow us to use Cortex API (LLM call).
+* (USAGE) EXTERNAL ACCESS INTEGRATION: Allow us to call your knowledge base once you configured it (egress).
+
+#### Activate the application
+
+When you click on activate the KAI application, the deployment script will :
+
+* create a new database "KAI\_APP"
+* create a warehouse&#x20;
+* create 2 compute pools
+* deploy the admin UI interface
+
+Once the admin UI interface is deployed, you can go on it and deploy your first KAI Instance.
+
 ### Connect a knowledge base to KAI app
 
 Generally, steps to connect a knowledge base to KAI app is :
