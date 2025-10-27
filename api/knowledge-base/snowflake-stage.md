@@ -6,6 +6,8 @@ description: Index documents uploaded on your Snowflake stage
 
 Need : Snowflake admin
 
+### General case (use a Snowflake Stage on the KAI SaaS Version)
+
 {% stepper %}
 {% step %}
 ### Create a snowflake user
@@ -51,6 +53,46 @@ Final output :&#x20;
 * user : the username of the created snowflake user on step 1
 * password : the programatic access token created on step 2
 * stage name : the name of the stage you want to connect
-* type :&#x20;
-  * EXTERNAL : In this case, you want to connect KAI (saas mode) into your snowflake stage
-  * INTERNAL : You use KAI in the snowflake marketplace AND you want to connect a stage who is in the same account where is installed the KAI Snowflake marketplace app. In this case, you don't have to put real account, role and user value, it will be automatically added from snowflake environment variable retrieved by the app (Put XXX value to don't let it blank). You will need to grant access to the stage to the kai app role.
+* type : EXTERNAL
+
+### In case you want to connect a Snowflake Stage with KAI app through Snowflake&#x20;
+
+In this case, we will use the snowflake rules management and give access to the Snowflake stage you want to connect with the KAI app through Snowflake rules.
+
+Need : Snowflake Admin
+
+{% stepper %}
+{% step %}
+### Configure the stage for the KAI app
+
+When you deploy KAI app, a app name is asked to configure (and only visible on your side), note it down.
+
+consumer\_db = the database where your stage is
+
+consumer\_schema = the schema where your stage is
+
+consumer\_stage = your snowflake stage name
+
+app\_name = the name you choose when you deploy KAI on your snowflake account.
+
+```sql
+GRANT USAGE ON DATABASE <consumer_db> TO APPLICATION <app_name>; 
+GRANT USAGE ON SCHEMA <consumer_db>.<consumer_schema> TO APPLICATION <app_name>; 
+GRANT READ ON STAGE <consumer_db>.<consumer_schema>.<consumer_stage> TO APPLICATION <app_name>;
+```
+
+These commands will give the possibility to the KAI app to read documents of your Snowflake Stage.
+{% endstep %}
+{% endstepper %}
+
+Final output :&#x20;
+
+* account : put "account" (will not be used, the value is not a matther)
+* database : consumer\_db
+* schema : consumer\_schema
+* role : put "role" (will not be used, the value is not a matter)
+* user : put "user" (will not be used, the value is not a matter)
+* password : put "password" (will not be used, the value is not a matter)
+* stage name : consumer\_stage
+* type : EXTERNAL
+
