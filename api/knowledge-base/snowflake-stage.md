@@ -94,5 +94,5 @@ Final output :&#x20;
 * user : put "user" (will not be used, the value is not a matter)
 * password : put "password" (will not be used, the value is not a matter)
 * stage name : consumer\_stage
-* type : EXTERNAL
+* type : INTERNAL
 
