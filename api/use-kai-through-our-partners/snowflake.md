@@ -54,7 +54,13 @@ When you click on activate the KAI application, the deployment script will :
 
 Once the admin UI interface is deployed, you can go on it and deploy your first KAI Instance.
 
-### Connect a knowledge base to KAI app
+### Deploy your first instance
+
+#### Create an KAI Instance
+
+Create a new KAI instance on your admin UI interface
+
+#### Connect a knowledge base to your KAI instance
 
 Generally, steps to connect a knowledge base to KAI app is :
 
@@ -65,3 +71,14 @@ Generally, steps to connect a knowledge base to KAI app is :
   * method 1 : [SQL MODE](https://docs.snowflake.com/en/sql-reference/sql/alter-external-access-integration)
   * method 2 : [UI MODE](https://docs.snowflake.com/en/developer-guide/external-network-access/creating-using-external-network-access)
 * Wait 10s and validate it on the KAI admin UI (waiting 10s is important to be sure the propagation of updated hosts on the EAI is effective).
+
+#### Choose scenario
+
+Following what you want to do on your instance, on "features" tab of your instance, choose "Search" or "Audit" or both.
+
+* search = will allow you to use search endpoints&#x20;
+* audit = will allow you to use audit endpoints
+
+#### Deploy the KAI Instance
+
+On the tab "Instance detail", click on "launch instance"
