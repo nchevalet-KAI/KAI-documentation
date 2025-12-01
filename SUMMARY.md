@@ -5,7 +5,6 @@
 ## DISCOVER KAI
 
 * [Quickstart](discover-kai/quickstart.md)
-* [Architecture](discover-kai/architecture.md)
 * [KAI solution](discover-kai/kai-solution/README.md)
   * [KAI Instance](discover-kai/kai-solution/kai-instance.md)
   * [KAI document compagnon](discover-kai/kai-solution/kai-document-compagnon.md)
@@ -21,6 +20,7 @@
 ## TECHNICAL DOCUMENTATION <a href="#api" id="api"></a>
 
 * [Getting started](api/editor.md)
+* [Architecture](api/architecture.md)
 * [API](api/api-presentation/README.md)
   * [Orchestrator](api/api-presentation/orchestrator.md)
   * [Documents](api/api-presentation/documents.md)
