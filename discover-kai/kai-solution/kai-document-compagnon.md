@@ -356,3 +356,5 @@ We don't just tell you what's missing—we help you create it. Answer a few ques
 #### 🔌 Zero-Disruption Integration
 
 Works with your existing infrastructure. No need to change your AI system, document repositories, or workflows. Just connect and go.
+
+_KAI Document Compagnon - Because your users deserve accurate, consistent information._

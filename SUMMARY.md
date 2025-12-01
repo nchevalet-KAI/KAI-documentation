@@ -8,6 +8,7 @@
 * [KAI Technology](discover-kai/kai-technology/README.md)
   * [KAI Technology advantages](discover-kai/kai-technology/kai-advantages.md)
 * [KAI solution](discover-kai/kai-solution/README.md)
+  * [KAI Instance](discover-kai/kai-solution/kai-instance.md)
   * [KAI document compagnon](discover-kai/kai-solution/kai-document-compagnon.md)
   * [Audit Documents](discover-kai/kai-solution/audit-documents.md)
   * [Audit Knowledge](discover-kai/kai-solution/audit-knowledge.md)
