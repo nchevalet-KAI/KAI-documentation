@@ -1,10 +1,9 @@
 ---
+description: The Foundation of Intelligent Document Understanding
 icon: brain-circuit
 ---
 
 # KAI Instance
-
-### The Foundation of Intelligent Document Understanding
 
 Traditional RAG systems use vector similarity to retrieve text chunks, but they can't truly understand how information relates across documents. This limitation leads to incomplete answers, hallucinations, and missed connections.
 
