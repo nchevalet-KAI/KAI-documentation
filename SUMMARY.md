@@ -5,8 +5,7 @@
 ## DISCOVER KAI
 
 * [Quickstart](discover-kai/quickstart.md)
-* [KAI Technology](discover-kai/kai-technology/README.md)
-  * [KAI Technology advantages](discover-kai/kai-technology/kai-advantages.md)
+* [Architecture](discover-kai/architecture.md)
 * [KAI solution](discover-kai/kai-solution/README.md)
   * [KAI Instance](discover-kai/kai-solution/kai-instance.md)
   * [KAI document compagnon](discover-kai/kai-solution/kai-document-compagnon.md)
