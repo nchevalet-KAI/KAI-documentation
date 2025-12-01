@@ -42,7 +42,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 **How it works:** Connects to your document repositories and your AI search system. Analyzes user queries in real-time to detect when documents need updating. Provides actionable alerts and even generates new content for you.
 
-[👉 **Learn more about KAI Document Compagnon →**](kai-solution/kai-document-compagnon.md)
+[👉 **Learn more about KAI Document Compagnon →**](kai-document-compagnon.md)
 
 #### ⚙️ KAI Instance (The Technology)
 
@@ -52,7 +52,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 **How it fits:** KAI Instance serves as the intelligent retrieval component of RAG systems, providing semantic understanding instead of simple vector similarity. It's the technology that makes KAI Document Compagnon's conflict detection possible.
 
-[👉 **Learn more about KAI Instance →**](kai-solution/kai-instance.md)
+[👉 **Learn more about KAI Instance →**](kai-instance.md)
 
 ### How KAI Works (The Big Picture)
 
@@ -143,7 +143,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 3. **Get immediate value** from duplicate detection
 4. **Start receiving alerts** on conflicts and gaps
 
-[👉 **Get Started with KAI Document Compagnon →**](kai-solution/kai-document-compagnon.md)
+[👉 **Get Started with KAI Document Compagnon →**](kai-document-compagnon.md)
 
 #### Option 2: Explore KAI Instance
 
@@ -153,7 +153,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 2. **See how it integrates** with your RAG architecture
 3. **Evaluate** as a retrieval component for your AI system
 
-[👉 **Learn about KAI Instance →**](kai-solution/kai-instance.md)
+[👉 **Learn about KAI Instance →**](kai-instance.md)
 
 #### Option 3: Talk to Us
 
