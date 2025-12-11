@@ -29,7 +29,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 ### Our Products
 
-#### 🎯 KAI Document Compagnon (Main Product)
+#### 🎯 KAI Document **Companion** (Main Product)
 
 **For:** Knowledge base managers, documentation teams, product managers, support teams—anyone who sees their AI search system struggle because documents aren't maintained.
 
@@ -42,15 +42,15 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 **How it works:** Connects to your document repositories and your AI search system. Analyzes user queries in real-time to detect when documents need updating. Provides actionable alerts and even generates new content for you.
 
-[👉 **Learn more about KAI Document Compagnon →**](kai-document-compagnon.md)
+[👉 **Learn more about KAI Document Companion →**](kai-document-companion.md)
 
 #### ⚙️ KAI Instance (The Technology)
 
 **For:** CDOs, CTOs, Architects building or enhancing AI search systems.
 
-**What it is:** A semantic indexing engine that powers KAI Document Compagnon. It creates a proprietary semantic neural network that understands relationships between information across your documents.
+**What it is:** A semantic indexing engine that powers KAI Document Companion. It creates a proprietary semantic neural network that understands relationships between information across your documents.
 
-**How it fits:** KAI Instance serves as the intelligent retrieval component of RAG systems, providing semantic understanding instead of simple vector similarity. It's the technology that makes KAI Document Compagnon's conflict detection possible.
+**How it fits:** KAI Instance serves as the intelligent retrieval component of RAG systems, providing semantic understanding instead of simple vector similarity. It's the technology that makes KAI Document Companion's conflict detection possible.
 
 [👉 **Learn more about KAI Instance →**](kai-instance.md)
 
@@ -66,7 +66,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
            ▼
 ┌─────────────────────┐
 │  KAI Document       │
-│  Compagnon          │
+│  Companion          │
 │  (Powered by        │
 │   KAI Instance)     │
 └──────────┬──────────┘
@@ -100,7 +100,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 ### The KAI Value Proposition
 
-#### For Business Users (KAI Document Compagnon)
+#### For Business Users (KAI Document Companion)
 
 **Stop the frustration of broken AI answers**
 
@@ -134,7 +134,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 ### Getting Started
 
-#### Option 1: Start with KAI Document Compagnon (Recommended)
+#### Option 1: Start with KAI Document Companion (Recommended)
 
 **Best for:** Teams who want to improve their AI search system's reliability right now.
 
@@ -143,7 +143,7 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 3. **Get immediate value** from duplicate detection
 4. **Start receiving alerts** on conflicts and gaps
 
-[👉 **Get Started with KAI Document Compagnon →**](kai-document-compagnon.md)
+[👉 **Get Started with KAI Document Companion →**](kai-document-companion.md)
 
 #### Option 2: Explore KAI Instance
 
@@ -165,15 +165,15 @@ Your AI gives confusing, incorrect, or incomplete answers. Users lose trust. Sup
 
 ### Common Questions
 
-#### Do I need both KAI Document Compagnon and KAI Instance?
+#### Do I need both KAI Document Companion and KAI Instance?
 
-**No.** KAI Document Compagnon uses KAI Instance under the hood. If you're using KAI Document Compagnon, you're already benefiting from KAI Instance's semantic technology.
+**No.** KAI Document Companion uses KAI Instance under the hood. If you're using KAI Document Companion, you're already benefiting from KAI Instance's semantic technology.
 
 **Use KAI Instance directly** if you're building your own AI search system and want semantic retrieval as a component.
 
 #### What AI systems does KAI work with?
 
-KAI Document Compagnon works with any AI search system that processes user queries:
+KAI Document Companion works with any AI search system that processes user queries:
 
 * RAG systems (Retrieval-Augmented Generation)
 * Conversational agents
@@ -206,13 +206,13 @@ _Audio and video files are not currently supported._
 * **On-premises** (your infrastructure)
 * **Snowflake Marketplace** (native integration)
 
-**KAI Document Compagnon** is typically deployed as SaaS, with on-premises options available.
+**KAI Document Companion** is typically deployed as SaaS, with on-premises options available.
 
 ### Next Steps
 
 #### Ready to improve your AI search system?
 
-1. **Read more** about KAI Document Compagnon to understand the full solution
+1. **Read more** about KAI Document Companion to understand the full solution
 2. **Book a demo** to see it in action with your documents
 3. **Contact us** to discuss your specific needs
 

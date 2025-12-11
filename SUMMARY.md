@@ -5,7 +5,7 @@
 ## DISCOVER KAI
 
 * [Quickstart](discover-kai/quickstart.md)
-* [KAI document compagnon](discover-kai/kai-document-compagnon.md)
+* [KAI document companion](discover-kai/kai-document-companion.md)
 * [KAI Instance](discover-kai/kai-instance.md)
 * [KAI solution](discover-kai/kai-solution/README.md)
   * [Audit Documents](discover-kai/kai-solution/audit-documents.md)
@@ -13,7 +13,6 @@
   * [Search](discover-kai/kai-solution/search.md)
   * [Chatbot](discover-kai/kai-solution/chatbot.md)
   * [Semantic graph](discover-kai/kai-solution/semantic-graph.md)
-* [Some Use Cases](https://k-ai.ai/use-cases/)
 * [FAQs](api/troubleshooting-and-faqs.md)
 * [Some clients use cases](discover-kai/some-clients-use-cases.md)
 

@@ -3,7 +3,7 @@ description: Clean the documents that really matter
 icon: sparkles
 ---
 
-# KAI document compagnon
+# KAI document companion
 
 ### The hidden problem you're not seeing
 
@@ -13,9 +13,9 @@ Every day, these inconsistencies silently erode user trust, increase support tic
 
 **What if you could automatically detect which documents need updating, based on what your users are actually asking?**
 
-### What is KAI Document Compagnon?
+### What is KAI Document Companion?
 
-**KAI Document Compagnon** is a two-phase intelligent solution that first cleans up your document repository by identifying duplicates, then continuously monitors for conflicts and content gaps by analyzing real user queries from your AI search system. Instead of waiting for issues to accumulate, we detect contradictions, outdated information, and missing topics as soon as they emerge from user queries—then help you fix them quickly so they don't impact more users.
+**KAI Document Companion** is a two-phase intelligent solution that first cleans up your document repository by identifying duplicates, then continuously monitors for conflicts and content gaps by analyzing real user queries from your AI search system. Instead of waiting for issues to accumulate, we detect contradictions, outdated information, and missing topics as soon as they emerge from user queries—then help you fix them quickly so they don't impact more users.
 
 #### The Two-Phase Process
 
@@ -291,7 +291,7 @@ _From gap detection to published document in minutes, not hours._
            ▼
 ┌─────────────────────┐
 │  KAI Document       │
-│  Compagnon          │
+│  Companion          │
 │  (Analysis Engine)  │
 └──────────┬──────────┘
            │
@@ -357,4 +357,4 @@ We don't just tell you what's missing—we help you create it. Answer a few ques
 
 Works with your existing infrastructure. No need to change your AI system, document repositories, or workflows. Just connect and go.
 
-_KAI Document Compagnon - Because your users deserve accurate, consistent information._
+_KAI Document Companion - Because your users deserve accurate, consistent information._

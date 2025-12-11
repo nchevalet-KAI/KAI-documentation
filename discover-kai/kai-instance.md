@@ -187,23 +187,23 @@ Unlike vector databases that measure similarity, KAI Instance's semantic graph:
 * **No performance monitoring** on your side
 * **Just use the API** and it works
 
-### How KAI Document Compagnon Uses KAI Instance
+### How KAI Document Companion Uses KAI Instance
 
-KAI Document Compagnon is built on top of KAI Instance. Here's how they work together:
+KAI Document Companion is built on top of KAI Instance. Here's how they work together:
 
 #### Phase 1: Indexing & Duplicate Detection
 
-1. **KAI Document Compagnon** connects a **KAI Instance** to your document repositories
+1. **KAI Document Companion** connects a **KAI Instance** to your document repositories
 2. **KAI Instance** performs the full semantic indexing
-3. **KAI Document Compagnon** queries the instance to identify duplicate documents by analyzing semantic relationships
+3. **KAI Document Companion** queries the instance to identify duplicate documents by analyzing semantic relationships
 4. **Result:** You get a clean, deduplicated repository
 
 #### Phase 2: Conflict Detection
 
-1. **KAI Document Compagnon** receives user queries from your AI system
-2. **KAI Document Compagnon** queries **KAI Instance** via API with those queries
+1. **KAI Document Companion** receives user queries from your AI system
+2. **KAI Document Companion** queries **KAI Instance** via API with those queries
 3. **KAI Instance** returns semantic nodes and relationships for relevant information
-4. **KAI Document Compagnon** analyzes the semantic connections to detect:
+4. **KAI Document Companion** analyzes the semantic connections to detect:
    * **Contradictions** between documents
    * **Outdated information** that doesn't match user expectations
    * **Missing topics** that users are asking about
@@ -211,7 +211,7 @@ KAI Document Compagnon is built on top of KAI Instance. Here's how they work tog
 
 #### The Power of Semantic Understanding
 
-Because KAI Instance provides semantic relationships (not just text), KAI Document Compagnon can:
+Because KAI Instance provides semantic relationships (not just text), KAI Document Companion can:
 
 * **Detect contradictions** even when documents use different wording
 * **Understand context** to identify when information conflicts
@@ -251,7 +251,7 @@ Because KAI Instance provides semantic relationships (not just text), KAI Docume
 │  • LLM              │
 │  • Agents/Agentic   │
 │  • Document         │
-│    Compagnon        │
+│    Companion        │
 └─────────────────────┘
 
 ```
