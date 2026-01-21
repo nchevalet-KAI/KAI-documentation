@@ -2,7 +2,7 @@
 description: To connect KAI with Microsoft Sharepoint, we use Microsoft Graph API
 ---
 
-# Microsoft Sharepoint (online)
+# Microsoft Sharepoint (documents)
 
 Need : your Microsoft Azure Tenant Administrator
 
@@ -65,6 +65,12 @@ your sub folder value will be : HR/Process
 
 Take care about capital letters if you have it
 {% endstep %}
+
+{% step %}
+### (Optional) In case if your documents is not on the default documents library
+
+Assuming you want to index documents from another documents library than the default one, your library name will be the name of the library itself
+{% endstep %}
 {% endstepper %}
 
 Final output :&#x20;
@@ -75,3 +81,4 @@ Final output :&#x20;
 * sharepoint host : the sharepoint host of your Microsoft Sharepoint
 * sharepoint site name : the sharepoint site retrieved on phase 6
 * (optional) subfolder : the subfolder retrieved on phase 7
+* (optional) libraryname : the name of the library retrieved on phase 8
