@@ -2,6 +2,7 @@
 description: >-
   How to structure the governance of your unstructured knowledge — and why
   structured data approaches don't apply.
+icon: sitemap
 ---
 
 # Organizing your document bases
