@@ -5,6 +5,7 @@
 ## DISCOVER KAI
 
 * [Quickstart](discover-kai/quickstart.md)
+* [Organizing your document bases](discover-kai/organizing-your-document-bases.md)
 * [KAI document companion](discover-kai/kai-document-companion.md)
 * [KAI Instance](discover-kai/kai-instance.md)
 * [KAI solution](discover-kai/kai-solution/README.md)
