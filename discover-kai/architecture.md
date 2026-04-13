@@ -106,12 +106,12 @@ flowchart TB
     queue --> fpm["fileparser-manager"]
     fpm --> sfp["smart-file-parser<br/>ephemeral K8s pod"]
     sfp --> extract["Content extraction<br/>PDF / Word / Excel / PPT / email / images"]
-    extract --> chunk["Semantic chunking<br/>Chonkie"]
+    extract --> chunk["Semantic chunking"]
     chunk --> ingest["Instance ingestion"]
     ingest --> semgraph[("Semantic graph<br/>Postgres")]
-    ingest --> vectors[("Vector index<br/>Elasticsearch / Snowflake")]
+    ingest --> vectors[("index<br/>Elasticsearch / Snowflake")]
     ingest --> storage[("Object storage<br/>Blob / S3 / Stage")]
-    ingest -->|"Cost event"| picsou["PICSOU billing"]
+    ingest -->|"Cost event"| picsou["billing"]
 ```
 
 Document state machine: `INITIAL_SAVED → ON_CONTENT_EXTRACT → INDEXED`. The instance exposes status via the Orchestrator and Documents endpoints for client-side progress tracking.
@@ -154,7 +154,7 @@ A single user token gives access to exactly the instances the user is entitled t
 
 #### Hybrid Architecture: Single-Tenant Instances, Multi-Tenant Management
 
-Customer data (documents, embeddings, semantic graph, audit artifacts) lives in **per-customer single-tenant KAI Instances** — one K8s pod + one DB schema + one vector store + one storage bucket per instance. Platform management state (users, orgs, billing, workflow metadata) lives in a shared **multi-tenant management plane** that stores no document content.
+Customer data (documents, embeddings, semantic graph, audit artifacts) lives in **per-customer single-tenant KAI Instances** — one K8s pod + one DB schema + one index store + one storage bucket per instance. Platform management state (users, orgs, billing, workflow metadata) lives in a shared **multi-tenant management plane** that stores no document content.
 
 ```mermaid
 flowchart TB
@@ -167,13 +167,13 @@ flowchart TB
 
     subgraph A["Customer A — KAI Instance"]
         dbA[("Metadata + graph<br/>Postgres schema")]
-        vecA[(Vector index)]
+        vecA[(index)]
         blobA[(Object storage)]
     end
 
     subgraph B["Customer B — KAI Instance"]
         dbB[("Metadata + graph<br/>Postgres schema")]
-        vecB[(Vector index)]
+        vecB[(index)]
         blobB[(Object storage)]
     end
 
