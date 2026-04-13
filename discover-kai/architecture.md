@@ -7,389 +7,306 @@ icon: sitemap
 
 ### Overview
 
-KAI uses a **hybrid architecture** that combines single-tenant and multi-tenant components to ensure both data isolation and operational efficiency:
+KAI is an enterprise document intelligence and audit platform built on a **hybrid architecture**: per-customer **single-tenant instances** hold all document content and embeddings, while a shared **multi-tenant management plane** handles users, organisations, billing, and access control. Customer-facing access is delivered through three distinct API surfaces, each tailored to a class of consumer — machine-to-machine pipelines, browser users, and host-LLM clients via MCP.
 
-* **KAI Instance:** Single-tenant architecture—each instance runs in complete isolation with dedicated compute and storage
-* **KAI Document Compagnon:** Multi-tenant architecture—manages multiple client instances while maintaining data segregation
-
-This architecture provides enterprise-grade security through instance-level isolation while enabling efficient management and scaling.
+For a visual entry point to the three API surfaces and who consumes each, see Platform overview.
 
 ### Core Components
 
-#### KAI Instance
+#### KAI Instance (single-tenant)
 
-The semantic indexing engine that powers KAI's intelligent document understanding:
+One KAI Instance = one customer deployment. Each instance is a fully isolated stack:
 
-* **Architecture:** Single-tenant—each instance is completely isolated
-* **Semantic Graph:** Proprietary neural network that maps relationships across documents
-* **Indexing Engine:** Processes and indexes documents from client repositories
-* **API Layer:** REST API for querying semantic nodes and relationships
-* **Auto-scaling:** Automatically adjusts compute and storage based on load
-* **Isolation:** Dedicated pod (AKS) and Elastic Cloud database per instance
+* Its own K8s pod running the service
+* Its own PostgreSQL schema (for metadata and the semantic graph)
+* Its own vector index (Elasticsearch in SaaS, Snowflake `VECTOR` types in native-app deployments)
+* Its own object storage (Azure Blob, S3, or Snowflake Stage)
 
-#### KAI Document Compagnon
+The KAI Instance handles document ingestion via an orchestrator, extracts and stores document metadata, builds a semantic knowledge graph, and exposes raw audit primitives. Cross-instance data leakage is architecturally impossible.
 
-The intelligent document maintenance layer built on top of KAI Instance:
+Exposed via the **KAI Instance API** at `https://api.kai-studio.ai` — 33 endpoints across Orchestrator, Documents, Audit (raw), and Semantic Graph, authenticated with `instance-id` + `api-key` headers.
 
-* **Architecture:** Multi-tenant—manages multiple client instances
-* **Conflict Detection:** Analyzes user queries to detect document inconsistencies
-* **Gap Analysis:** Identifies missing topics users are asking about
-* **Content Generation:** Creates new documents based on admin responses
-* **Alert System:** Provides actionable recommendations for document updates
-* **Instance Management:** Orchestrates multiple KAI Instances while maintaining data segregation
+#### KAI Document Companion (multi-tenant management)
 
-#### API Gateway
+The management plane shared across all customers. Responsible for:
 
-The integration layer that connects KAI with client systems:
+* User and organisation accounts, group memberships, RBAC
+* Per-instance configuration, instructions cascade, access rules
+* Subscription and billing state
 
-* **REST API:** Standard API for all integrations
-* **Authentication:** Secure API key management
-* **Rate Limiting:** Ensures fair resource usage
+Deployed as two services: `kaistudio-back` (core CRUD) and `user-functionnalities` (audit + retrieval modules, see below). **Stores no document content** — only metadata, identity, and access rules.
+
+#### User Functionnalities (audit + retrieval modules)
+
+A dedicated service hosting the two high-level APIs:
+
+* **Audit module** — drives the document-audit workflow: state machine, duplicates, conflicts, mandatory questions. Consumed by the `audit-ui` (browser) and by host LLMs via MCP. Exposed as the **Audit API** at `https://api-audit.kai-studio.ai` (40 endpoints, MCP 🧪 BETA).
+* **Retrieval module** — exposes the knowledge primitives (list instances, fetch documents, semantic search) that host LLMs need to orchestrate RAG and conversation client-side. Exposed as the **Retrieval API** at `https://api-retrieval.kai-studio.ai` (5 endpoints, MCP stable). **Replaces the deprecated `/search` and `/conversation` endpoints of the KAI Instance API** (both removed 2026-04-13).
+
+Both modules authenticate users via OAuth 2.1 (for MCP and custom integrations) or HttpOnly cookies (for browsers). Access is group-aware — a single user token gives scoped access to exactly the instances the user is entitled to.
+
+#### Centralized Auth
+
+A dedicated service (`STUDIO/auth`) that provides:
+
+* HttpOnly cookie issuance (`kai_auth` on `.kai-studio.ai`) for all KAI frontends
+* A full **OAuth 2.1 Authorization Server** (Dynamic Client Registration, PKCE, refresh-token rotation) for MCP clients and custom integrations
+* **Microsoft SSO** via multi-tenant Azure AD (OIDC)
+
+See Authentication — OAuth 2.1 for the full flow, and MCP Reference — OAuth flow (detailed) for the sequence diagram.
+
+#### Supporting services
+
+* **smart-file-parser** — content extraction from PDF / Word / Excel / PowerPoint / email / images, plus semantic chunking. Runs as ephemeral K8s pods spawned per task.
+* **custom-llm-router + litellm-queue** — LLM inference proxy with tiered failover.
+* **web-crawler** — crawls external URLs as a knowledge source (6-stage Playwright pipeline).
 
 ### Integration Architecture
 
 #### How KAI Connects to Your Systems
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Client Infrastructure                │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  ┌───────────────┐         ┌──────────────────┐         │
-│  │  Document     │         │  AI Search       │         │
-│  │  Repositories │         │  System          │         │
-│  │               │         │  (RAG/Agents/    │         │
-│  │ • Confluence  │         │   Copilot)       │         │
-│  │ • SharePoint  │         │                  │         │
-│  │ • Notion      │         │                  │         │
-│  │ • Git, etc.   │         │                  │         │
-│  └───────┬───────┘         └────────┬─────────┘         │
-│          │                          │                   │
-│          │ API                      │ API               │
-│          │ (Document Access)        │ (User Queries)    │
-└──────────┼──────────────────────────┼───────────────────┘
-           │                          │
-           │                          │
-           ▼                          ▼
-┌─────────────────────────────────────────────────────────┐
-│                    KAI Platform                         │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  ┌───────────────────────────────────────────────┐      │
-│  │    KAI Document Compagnon (Multi-Tenant)      │      │
-│  │  • Conflict Detection                         │      │
-│  │  • Gap Analysis                               │      │
-│  │  • Content Generation                         │      │
-│  │  • Instance Orchestration                     │      │
-│  └───────────────┬───────────────────────────────┘      │
-│                  │                                      │
-│                  │ API (per client instance)            │
-│                  ▼                                      │
-│  ┌───────────────────────────────────────────────┐      │
-│  │    KAI Instance (Single-Tenant per client)    │      │
-│  │  • Semantic Graph                             │      │
-│  │  • Indexing Engine                            │      │
-│  │  • Query API                                  │      │
-│  │  • Isolated Pod + Elastic Cloud               │      │
-│  └───────────────────────────────────────────────┘      │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+KAI integrates through three distinct patterns, each matching a class of consumer:
+
+```mermaid
+flowchart LR
+    repos["Document repositories<br/>SharePoint · Google Drive · Confluence<br/>ServiceNow · Jira · Custom ETL"]
+    llm["Host LLM clients<br/>Claude Desktop · Cursor · Le Chat<br/>Custom MCP agents"]
+    browser["Browser users<br/>audit-ui · Admin portals"]
+
+    subgraph kai["KAI Platform"]
+        instanceapi["KAI Instance API<br/>api.kai-studio.ai<br/>instance-id + api-key"]
+        retrievalapi["Retrieval API<br/>api-retrieval.kai-studio.ai<br/>OAuth 2.1 + MCP"]
+        auditapi["Audit API<br/>api-audit.kai-studio.ai<br/>OAuth 2.1 + MCP BETA"]
+        auth["Auth<br/>OAuth 2.1 + cookies"]
+    end
+
+    repos --> instanceapi
+    llm --> retrievalapi
+    llm -. "MCP BETA" .-> auditapi
+    llm -. "OAuth 2.1" .-> auth
+    browser --> auditapi
+    browser -. "Login" .-> auth
 ```
 
 #### Integration Points
 
-**Document Repositories → KAI**
-
-* **Connection:** Via API connectors (Confluence API, SharePoint API, etc.)
-* **Access:** Read-only access to documents for indexing
-* **Frequency:** Initial full index, then incremental updates as documents change
-
-**AI Search System → KAI Document Compagnon**
-
-* **Connection:** REST API integration
-* **Data Flow:** Your AI system sends user queries to KAI Document Compagnon
-* **Real-time:** Queries are analyzed as they happen
-
-**KAI → Client Systems**
-
-* **Alerts:** KAI Document Compagnon provides alerts via API
-* **Recommendations:** Actionable insights on document conflicts and gaps
-* **Generated Content:** New documents ready for your knowledge base
+* **Document sources → KAI Instance** — ingestion via the SDK's KB sources (SharePoint, Google Drive, Confluence, ServiceNow, Jira, Generic HTTP), S3/Blob drops, or direct upload through the Orchestrator endpoints. Each source becomes a document entry, parsed by `smart-file-parser`, and indexed into the instance's semantic graph.
+* **Host LLM clients → Retrieval MCP / Audit MCP** — any MCP-compatible client discovers OAuth at the MCP URL, authenticates the end-user (local password or Microsoft SSO), and calls KAI primitives as tools. See MCP Reference — Connecting a client for one-click install and manual configuration per client.
+* **Identity providers → Auth service** — Microsoft SSO is supported today (multi-tenant Azure AD / OIDC). Additional providers are a natural extension.
+* **Observability → your SIEM / log aggregator** — metrics are exported in standard formats (see Monitoring below).
 
 ### Data Flow
 
 #### Document Indexing Flow
 
-```
-1. Document Source
-   └─> Client's Document Repository
-   
-2. Temporary Storage
-   └─> Azure Blob Storage (temporary, during processing)
-   
-3. Processing
-   └─> KAI Instance Indexing Engine
-       • Document analysis
-       • Semantic relationship mapping
-       • Graph construction
-   
-4. Permanent Storage
-   └─> Elastic Cloud (dedicated per instance)
-       • Semantic graph storage
-       • Indexed relationships
-   
-5. Reference
-   └─> Pointer to original document (via API)
-       • No document content stored permanently
-       • Only semantic relationships and metadata
+```mermaid
+flowchart TB
+    src["External source<br/>SharePoint / Drive / Upload"] -->|"POST /api/orchestrator"| instance["KAI Instance API"]
+    instance --> queue[("file_task queue<br/>Postgres")]
+    queue --> fpm["fileparser-manager"]
+    fpm --> sfp["smart-file-parser<br/>ephemeral K8s pod"]
+    sfp --> extract["Content extraction<br/>PDF / Word / Excel / PPT / email / images"]
+    extract --> chunk["Semantic chunking<br/>Chonkie"]
+    chunk --> ingest["Instance ingestion"]
+    ingest --> semgraph[("Semantic graph<br/>Postgres")]
+    ingest --> vectors[("Vector index<br/>Elasticsearch / Snowflake")]
+    ingest --> storage[("Object storage<br/>Blob / S3 / Stage")]
+    ingest -->|"Cost event"| picsou["PICSOU billing"]
 ```
 
-**Key Points:**
+Document state machine: `INITIAL_SAVED → ON_CONTENT_EXTRACT → INDEXED`. The instance exposes status via the Orchestrator and Documents endpoints for client-side progress tracking.
 
-* Documents are temporarily stored during processing only
-* After processing, documents are removed from temporary storage
-* KAI maintains pointers to original documents, not document copies
-* All semantic relationships are stored in the dedicated Elastic Cloud instance
+#### Query Processing Flow (MCP-based)
 
-#### Query Processing Flow
+**This replaces the old server-side `/search` + `/conversation`.** KAI no longer performs RAG or maintains conversation state server-side — the host LLM does the orchestration. See Why MCP for the editorial rationale.
 
+```mermaid
+sequenceDiagram
+    participant U as End user
+    participant C as MCP client<br/>(Claude / Cursor / Le Chat)
+    participant R as Retrieval API<br/>(+ MCP server)
+    participant A as Auth Server
+    participant I as KAI Instance API
+
+    U->>C: Ask a question
+    Note over C,A: First time only — OAuth 2.1 DCR + PKCE
+    C->>A: Register + Authorize + Token
+    A-->>C: access_token (JWT, 15 min) + refresh_token
+    C->>R: list-available-instances<br/>(Authorization: Bearer)
+    R->>R: AccessResolver resolves user's instances + cascaded instructions
+    R-->>C: [Instance A (with instructions), Instance B, ...]
+    Note over C: Host LLM picks tools
+    C->>R: semantic-nodes/search
+    R->>I: Per-instance call (api-key)
+    I-->>R: Relevant semantic nodes
+    R-->>C: Nodes
+    C->>R: documents/get-document
+    R->>I: Per-instance call
+    I-->>R: Document content
+    R-->>C: Content
+    Note over C: Host LLM orchestrates:<br/>builds answer, keeps history client-side
+    C-->>U: Answer
 ```
-1. User Query
-   └─> Client's AI Search System
-   
-2. Query Forwarding
-   └─> KAI Document Compagnon (via API)
-   
-3. Semantic Retrieval
-   └─> KAI Instance
-       • Query semantic graph
-       • Retrieve relevant nodes and relationships
-       • Return structured semantic data
-   
-4. Analysis
-   └─> KAI Document Compagnon
-       • Correlate query with semantic relationships
-       • Detect conflicts or gaps
-       • Generate recommendations
-   
-5. Response
-   └─> Client System
-       • Alerts on conflicts
-       • Recommendations for updates
-       • Generated content (if applicable)
-```
+
+A single user token gives access to exactly the instances the user is entitled to. The MCP client never sees an `api-key`; the Retrieval service translates user identity into per-instance credentials internally.
 
 ### Security & Data Isolation
 
 #### Hybrid Architecture: Single-Tenant Instances, Multi-Tenant Management
 
-**KAI Instance: Single-Tenant Architecture**
+Customer data (documents, embeddings, semantic graph, audit artifacts) lives in **per-customer single-tenant KAI Instances** — one K8s pod + one DB schema + one vector store + one storage bucket per instance. Platform management state (users, orgs, billing, workflow metadata) lives in a shared **multi-tenant management plane** that stores no document content.
 
-Each KAI Instance operates in complete isolation:
+```mermaid
+flowchart TB
+    subgraph multi["Multi-tenant management plane"]
+        users["Users · Orgs · Groups<br/><i>public + studio schemas</i>"]
+        billing["Billing · Costs<br/><i>schema</i>"]
+        audit_meta["Audit workflow metadata<br/><i>audit schema</i>"]
+        retrieval_cfg["Access control · Instructions<br/><i>retrieval schema</i>"]
+    end
 
-* **Dedicated Compute:** Each instance runs in its own pod on Azure Kubernetes Service (AKS) in France
-* **Dedicated Storage:** Each instance has its own Elastic Cloud database
-* **No Shared Resources:** No compute, storage, or network resources are shared between instances
-* **Data Segregation:** Complete separation ensures no data leakage between clients
-* **Complete Isolation:** Each client's semantic graph and indexed data are completely isolated
+    subgraph A["Customer A — KAI Instance"]
+        dbA[("Metadata + graph<br/>Postgres schema")]
+        vecA[(Vector index)]
+        blobA[(Object storage)]
+    end
 
-**KAI Document Compagnon: Multi-Tenant Architecture**
+    subgraph B["Customer B — KAI Instance"]
+        dbB[("Metadata + graph<br/>Postgres schema")]
+        vecB[(Vector index)]
+        blobB[(Object storage)]
+    end
 
-KAI Document Compagnon manages multiple client instances while maintaining strict data segregation:
-
-* **Instance Orchestration:** Manages multiple KAI Instances (one per client)
-* **Data Segregation:** Each client's data is isolated at the KAI Instance level
-* **No Cross-Instance Access:** KAI Document Compagnon never mixes data between instances
-* **API Isolation:** Each client's API calls are routed to their dedicated KAI Instance
-* **Operational Efficiency:** Multi-tenant management layer enables efficient operations while maintaining security
-
-**How It Works Together:**
-
-```
-KAI Document Compagnon (Multi-Tenant)
-    │
-    ├──> Client A's KAI Instance (Single-Tenant)
-    │    └──> Dedicated Pod + Elastic Cloud
-    │
-    ├──> Client B's KAI Instance (Single-Tenant)
-    │    └──> Dedicated Pod + Elastic Cloud
-    │
-    └──> Client C's KAI Instance (Single-Tenant)
-         └──> Dedicated Pod + Elastic Cloud
+    multi -.points to.-> A
+    multi -.points to.-> B
 ```
 
-Each client's data remains completely isolated in their dedicated KAI Instance, while KAI Document Compagnon provides the management and analysis layer across all instances.
+#### KAI Instance: Single-Tenant Architecture
+
+One customer = one dedicated stack. Access is gated by a `(instance_id, api_key)` pair — scoped to exactly one instance, shared neither across instances nor across customers. Key rotation is a one-click admin action that invalidates the previous key immediately.
+
+#### KAI Document Companion: Multi-Tenant Architecture
+
+Handles identity, access control, configurations, billing. Stores **no document content** — only metadata pointers, access rules, audit-workflow state, and cost events.
+
+#### How It Works Together
+
+When a user calls the Retrieval API with their OAuth Bearer token, the multi-tenant plane identifies them, `AccessResolver` computes the set of accessible instances and the cascaded instructions that apply (org default → instance → group), and the Retrieval service uses per-instance credentials to reach the underlying KAI Instance API.
+
+The MCP client never sees an `api-key`. Customer data never crosses the instance boundary.
 
 #### Data Storage & Privacy
 
-**Where Data is Stored:**
-
-* **Semantic Graph:** Elastic Cloud (dedicated instance per KAI Instance)
-* **Temporary Processing:** Azure Blob Storage (documents deleted after processing)
-* **Pointers Only:** KAI maintains API pointers to original documents, not document copies
-
-**Data Retention:**
-
-* **Semantic Relationships:** Stored permanently in Elastic Cloud (as long as instance is active)
-* **Document Content:** Not stored permanently—only semantic relationships and metadata
-* **Temporary Files:** Deleted immediately after processing
+* **Document content** — per-instance object storage (Azure Blob in SaaS, S3 on-premises, Snowflake Stage in Native Apps).
+* **Embeddings** — per-instance Elasticsearch index (SaaS) or Snowflake `VECTOR` types (Native Apps).
+* **Semantic graph** — per-instance PostgreSQL schema.
+* **Management metadata** — shared `public` / `studio` / `audit` / `retrieval` / `picsou` schemas. No document content.
+* **Encryption** — at-rest encryption provided by the underlying storage (Azure / AWS / Snowflake native). Secrets and connection strings are encrypted with Fernet. OAuth tokens are HS256-signed; the signing key (`SECRET_KEY`) is shared across services within a deployment.
 
 #### Security Measures
 
-* **Encryption:** All data encrypted in transit and at rest
-* **Access Control:** API key-based authentication
-* **Network Security:** Isolated network per instance
-* **Compliance:** Designed to meet enterprise security and compliance requirements
+* **OAuth 2.1** with PKCE (`S256` mandatory) and refresh-token rotation for MCP and custom user-level integrations.
+* **HttpOnly cookies** (`kai_auth` on `.kai-studio.ai`) for browser-based frontends. No JavaScript access to the token.
+* **`instance-id` + `api-key` headers** for machine-to-machine — scoped to a single instance.
+* **Rate limiting** on the Auth service: 5 login attempts per minute per IP, account lockout after 10 consecutive failures.
+* **Microsoft SSO** (multi-tenant Azure AD / OIDC) available for enterprise customers.
+* **TLS everywhere**, Let's Encrypt via cert-manager for public endpoints.
+* **Group-based RBAC** at the Retrieval API level — per-instance visibility, instruction cascade, enforced transparently on every MCP tool call.
 
 ### Scalability & Performance
 
-#### Auto-Scaling Architecture
+#### Auto-scaling architecture
 
-**Compute Scaling:**
+* Stateless HTTP services (audit API, retrieval API, web frontends) scale horizontally via multi-replica K8s deployments behind NGINX ingress.
+* LLM inference runs on a dedicated AWS EKS cluster with **tiered failover**: primary SGLang pods on g7e.12xlarge Spot → fallback g7e.2xlarge → Bedrock Claude Sonnet 4 for direct requests when Spot is evicted. Karpenter provisions nodes on demand.
+* LLM queue-runner scales workers based on the oldest pending-request wait time (>15 min triggers scale-up; >2 min idle triggers scale-down).
+* Document indexation runs as ephemeral K8s pods spawned per task by `fileparser-manager` — each pod processes one document and terminates.
 
-* Automatically adjusts based on query load
-* No manual configuration required
-* Seamless scaling without service interruption
+#### Performance characteristics
 
-**Storage Scaling:**
-
-* Grows automatically as documents are indexed
-* No storage limits or thresholds
-* Transparent to users
-
-#### Performance Guarantees
-
-**Availability:**
-
-* **99.95% uptime SLA**
-* High availability architecture
-* Automatic failover and recovery
-
-**Query Performance:**
-
-* **Semantic graph queries:** Always under 8 seconds
-* Performance consistent regardless of:
-  * Number of documents indexed
-  * Size of document repository
-  * Complexity of semantic relationships
-
-**Indexing Performance:**
-
-* Initial indexing: Speed depends on repository size
-* Incremental updates: Only changed documents are re-indexed
-* Minimal impact on ongoing operations
+* **Stateless compute tier** — any replica can serve any request; no sticky sessions needed.
+* **Queue-based processing** — LLM and indexation pipelines are queue-backed, which decouples spikes from user-facing latency.
+* **Per-instance isolation** — one noisy customer does not impact another: compute pods, databases, and storage are physically separate.
+* **MCP servers run in stateless mode** — no server-side sessions, safe for multi-replica behind a load balancer.
 
 ### Deployment Models
 
-#### SaaS (Software as a Service)
+#### SaaS
 
-**Infrastructure:**
-
-* Hosted on Azure (France region)
-* Managed by KAI team
-* Zero infrastructure management for clients
-
-**Benefits:**
-
-* Fast setup and deployment
-* Automatic updates and maintenance
-* Full support and monitoring
+Azure AKS cluster in `francecentral`, customer instances deployed as isolated pods. NGINX ingress + cert-manager, four node pools sized for the platform's common workloads. Customers access KAI under the `kai-studio.ai` domain (per-subdomain routing for the management + API surfaces). Managed operationally by our team; no customer infrastructure required.
 
 #### On-Premises
 
-**Infrastructure:**
+Identical K8s architecture deployed inside the customer's own cluster. Deployment documentation — including K8s templates, procedures, hardware requirements, and air-gapped support (`export-images.sh` / `import-images.sh` for offline Docker image transfer).
 
-* Deployed in client's own infrastructure
-* Full control over data and compute
-* Custom integration options
+#### Snowflake Marketplace (Native Apps)
 
-**Benefits:**
-
-* Data residency compliance
-* Enterprise security requirements
-* Custom network configuration
-
-#### Snowflake Marketplace
-
-**Infrastructure:**
-
-* Native integration with Snowflake
-* Leverages Snowflake compute and storage
-* Seamless data pipeline integration
-
-**Benefits:**
-
-* Enterprise-grade deployment
-* Integrated with existing Snowflake workflows
-* Optimized for Snowflake ecosystem
+Deployed as Snowflake Container Services (SPCS) inside the customer's own Snowflake account. Data never leaves Snowflake: documents are stored in Stages, embeddings in `VECTOR` columns, and the management metadata sits in dedicated schemas.
 
 ### Architecture Principles
 
 #### Separation of Concerns
 
-* **KAI Instance:** Handles semantic indexing and retrieval
-* **KAI Document Compagnon:** Handles conflict detection and content generation
-* **Client Systems:** Handle user experience and response generation
+* **Customer data vs management metadata** — physically separated into single-tenant instances and the multi-tenant management plane.
+* **User-facing vs machine-to-machine** — distinct API surfaces with distinct auth models. No single endpoint serves both, which simplifies reasoning about permissions and audit trails.
+* **One service owns one schema** — cross-schema reads are allowed (e.g. web-crawler reads `studio.organization`), but writes are strictly owned.
 
 #### API-First Design
 
-* All integrations via REST API
-* No proprietary protocols or dependencies
-* Standard authentication and authorization
-* Easy integration with existing systems
+* Every user-visible capability has a documented API. UIs are thin clients over those APIs.
+* MCP exposes Retrieval and Audit APIs as tools for host-LLM orchestration — no ad-hoc server-side LLM logic.
+* New capabilities ship as API changes first; UIs follow.
 
 #### Stateless Operations
 
-* API calls are stateless
-* No session management required
-* Horizontal scaling without state synchronization
-* Resilient to individual component failures
+* HTTP services hold no client session state server-side. Identity travels in the request (Bearer or cookie), configuration lives in the DB.
+* MCP servers are stateless, safe behind any load balancer.
+* Background workers are idempotent-by-design — tasks can be retried without side-effects.
 
 ### Monitoring & Observability
 
-#### What KAI Monitors
+#### What KAI monitors (platform-side)
 
-* **API Performance:** Response times and throughput
-* **Indexing Status:** Document processing progress
-* **System Health:** Instance availability and resource usage
-* **Query Patterns:** Usage analytics (anonymized)
+* Infrastructure metrics per pod — CPU, memory, request latency, error rates.
+* Queue depth on the LLM router and indexation pipeline.
+* Cost events per instance and per organisation, aggregated into KCU.
+* Auth service events — login attempts, rate-limit trips, OAuth token issuance and rotation.
+* MCP tool invocations for usage analytics.
 
-#### What Clients Can Monitor
+#### What clients can monitor
 
-* **API Usage:** Track API calls and consumption
-* **Indexing Status:** Monitor document indexing progress
-* **Alert History:** Review conflict and gap detections
-* **Performance Metrics:** Query response times
+* Per-instance indexation status through the Orchestrator and Documents endpoints.
+* Cost and consumption reports through dashboards (per-organisation view).
+* OAuth token lifecycle through the Auth service session endpoints.
+* On the MCP client side — tool-invocation logs visible directly in Claude Desktop, Cursor, or Le Chat.
 
 ### Integration Best Practices
 
-#### Document Repository Integration
+#### Document repository integration
 
-1. **Use Read-Only Access:** KAI only needs read access to documents
-2. **API Credentials:** Use dedicated service accounts with minimal permissions
-3. **Incremental Updates:** Enable change detection for efficient updates
-4. **Error Handling:** Implement retry logic for transient failures
+* **Prefer incremental syncs** over full re-indexations — the SDK's KB sources support delta detection. Full re-indexation is O(documents × cost-per-parse); incremental is O(changes).
+* Schedule indexation during low-traffic windows when possible.
+* Monitor the document state machine to catch failed extractions promptly.
+* Store `instance-id` + `api-key` in a secure secret manager.
 
-#### AI System Integration
+#### AI system integration (LLM + MCP)
 
-1. **Query Forwarding:** Forward user queries to KAI Document Compagnon
-2. **Async Processing:** Handle alerts and recommendations asynchronously
-3. **Rate Limiting:** Respect API rate limits for optimal performance
-4. **Error Handling:** Gracefully handle API errors without impacting user experience
+* For end-user agent integration, **prefer MCP over direct Retrieval API calls**. The OAuth flow handles user consent, token refresh, and revocation automatically; there is no key management to do on the client side.
+* **Let the host LLM orchestrate retrieval.** Do not build server-side RAG on top of the Retrieval API — the whole point of the MCP shift is that the client does orchestration. Server-side RAG duplicates work the host LLM already does natively.
+* For custom non-MCP agents, discover the OAuth configuration at `https://api-retrieval.kai-studio.ai/.well-known/oauth-authorization-server` and implement the full DCR + PKCE flow. See MCP Reference — OAuth flow (detailed).
 
 ### Next Steps
 
-#### For Technical Teams
+#### For technical teams
 
-* **Review integration requirements** for your document repositories
-* **Plan API integration** with your AI search system
-* **Understand deployment model** that fits your needs (SaaS, on-prem, Snowflake)
-* [**Contact us** to discuss specific architecture questions](https://k-ai.ai/contact/)
+* Start with the Platform overview for a visual summary of the three API surfaces.
+* Then go to the reference section that matches your use case:
+  * KAI Instance API for machine-to-machine pipelines.
+  * Retrieval API for host-LLM / MCP integrations.
+  * Audit API for automating document-audit workflows.
+* For MCP specifically, read the MCP Reference section.
 
-#### For Business Teams
+#### For business teams
 
-* **Understand the value** of semantic understanding for your AI system
-* **See how KAI Document Compagnon** can improve your knowledge base
-* [**Schedule a demo** to see the architecture in action](https://k-ai.ai/contact/)
-
-_KAI Architecture - Enterprise-grade security, performance, and scalability._
+* Audiences — who uses what is the fastest way to identify where your use case fits.
+* Why MCP explains the editorial rationale behind the `/search` and `/conversation` deprecation and the shift to MCP-based orchestration.
