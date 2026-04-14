@@ -68,6 +68,7 @@
   * [Service Now](api/knowledge-base/service-now.md)
   * [Google Drive](api/knowledge-base/google-drive.md)
   * [Generic connector](api/knowledge-base/generic-connector.md)
+  * [Kai Web Crawler](api/knowledge-base/kai-web-crawler.md)
 * [Use KAI through our partners](api/use-kai-through-our-partners/README.md)
   * [Snowflake](api/use-kai-through-our-partners/snowflake.md)
 * [Compliance, Security and Certifications](api/images-and-media.md)
