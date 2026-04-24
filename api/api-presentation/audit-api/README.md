@@ -10,7 +10,7 @@ Two modes of consumption:
 * **MCP 🧪 BETA** — drive an audit from a host LLM (Claude Desktop, Cursor, Le Chat). Useful for automating exploration of an audit's state, batch processing, or integrating audit into an agent.
 
 {% hint style="warning" %}
-**BETA notice.** The 40 endpoints below are exposed as MCP tools. The HTTP contracts (paths, request/response shapes) are stable; the **MCP tool schemas may still evolve** as we refine naming and descriptions. Not recommended for production-critical workloads. Read-oriented exploration is safe today; orchestrating the audit-launch state machine end-to-end via MCP is not yet smooth — see MCP usage for current limits.
+**BETA notice.** The 40 REST endpoints below are the full Audit API surface. MCP exposes a **curated 19-tool subset** focused on the conflict-first expert workflow — admin, stats, duplicates, user membership, and question-level writes are REST-only. HTTP contracts (paths, request/response shapes) are stable; **MCP tool schemas may still evolve**. Not recommended for production-critical workloads. See MCP usage for the curated MCP surface and current limits, and the MCP tool catalog for the exact list.
 {% endhint %}
 
 ### Base URL & conventions
