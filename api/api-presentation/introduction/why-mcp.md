@@ -28,10 +28,10 @@ Concrete mapping:
 
 Authentication moves from static API keys (per-instance, no user identity) to **OAuth 2.1** (per-user, group-aware permissions). A single token grants access to every instance the user is entitled to — no more juggling one API key per instance.
 
-### Why MCP on Audit, too (BETA)
+### Why MCP on Audit
 
-The audit workflow — create an instance, check indexation, identify duplicates, submit questions, surface conflicts — is a multi-step process that maps naturally to an LLM agent coordinating tools. The **Audit API** therefore also exposes its 40 endpoints as MCP tools.
+The audit workflow — surfacing conflicts across documents, recording expert answers, generating modification recommendations, closing resolved items — is a multi-step process that maps naturally to an LLM agent coordinating tools. The **Audit API** therefore exposes a **curated 19-tool subset** of its 40 REST endpoints as MCP tools, built around the **conflict-first workflow** (dashboard → list open conflicts → record answer → confirm applied → mark managed). Admin, stats, duplicates, user membership, and question-level writes stay REST-only for `audit-ui`.
 
-This is marked **BETA**: the API contracts are stable, but the MCP response schemas may evolve, and the audit state machine (`INIT` through `RUNNING_PHASE`) is not yet fully smooth when driven entirely through MCP. We recommend starting audits via the `audit-ui` browser interface and using MCP for exploration and analysis of an existing audit.
+The API contracts are stable, but the MCP response schemas may evolve. Instance creation / configuration and the audit-launch state machine (`INIT` through `RUNNING_PHASE`) are intentionally **not** on MCP — we recommend starting audits via the `audit-ui` browser interface and using MCP for exploring and resolving conflicts on an existing audit.
 
 **Next:** Retrieval API overview | Audit API overview

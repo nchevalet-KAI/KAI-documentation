@@ -58,7 +58,6 @@ See Authentication — OAuth 2.1 for the full flow, and MCP Reference — OAuth 
 #### Supporting services
 
 * **smart-file-parser** — content extraction from PDF / Word / Excel / PowerPoint / email / images, plus semantic chunking. Runs as ephemeral K8s pods spawned per task.
-* **custom-llm-router + litellm-queue** — LLM inference proxy with tiered failover.
 * **web-crawler** — crawls external URLs as a knowledge source (6-stage Playwright pipeline).
 
 ### Integration Architecture
@@ -218,8 +217,7 @@ The MCP client never sees an `api-key`. Customer data never crosses the instance
 #### Auto-scaling architecture
 
 * Stateless HTTP services (audit API, retrieval API, web frontends) scale horizontally via multi-replica K8s deployments behind NGINX ingress.
-* LLM inference runs on a dedicated AWS EKS cluster with **tiered failover**: primary SGLang pods on g7e.12xlarge Spot → fallback g7e.2xlarge → Bedrock Claude Sonnet 4 for direct requests when Spot is evicted. Karpenter provisions nodes on demand.
-* LLM queue-runner scales workers based on the oldest pending-request wait time (>15 min triggers scale-up; >2 min idle triggers scale-down).
+* LLM inference runs on a dedicated AWS EKS cluster with **tiered failover**
 * Document indexation runs as ephemeral K8s pods spawned per task by `fileparser-manager` — each pod processes one document and terminates.
 
 #### Performance characteristics
@@ -233,7 +231,7 @@ The MCP client never sees an `api-key`. Customer data never crosses the instance
 
 #### SaaS
 
-Azure AKS cluster in `francecentral`, customer instances deployed as isolated pods. NGINX ingress + cert-manager, four node pools sized for the platform's common workloads. Customers access KAI under the `kai-studio.ai` domain (per-subdomain routing for the management + API surfaces). Managed operationally by our team; no customer infrastructure required.
+Azure AKS cluster in `francecentral`, customer instances deployed as isolated pods. NGINX ingress + cert-manager. Customers access KAI under the `kai-studio.ai` domain (per-subdomain routing for the management + API surfaces). Managed operationally by our team; no customer infrastructure required.
 
 #### On-Premises
 
@@ -249,7 +247,7 @@ Deployed as Snowflake Container Services (SPCS) inside the customer's own Snowfl
 
 * **Customer data vs management metadata** — physically separated into single-tenant instances and the multi-tenant management plane.
 * **User-facing vs machine-to-machine** — distinct API surfaces with distinct auth models. No single endpoint serves both, which simplifies reasoning about permissions and audit trails.
-* **One service owns one schema** — cross-schema reads are allowed (e.g. web-crawler reads `studio.organization`), but writes are strictly owned.
+* **One service owns one schema** — cross-schema reads are allowed, but writes are strictly owned.
 
 #### API-First Design
 
