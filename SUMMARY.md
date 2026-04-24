@@ -54,7 +54,7 @@
     * [Conflicts](api/api-presentation/audit-api/conflicts.md)
     * [Missing subjects](api/api-presentation/audit-api/missing-subjects.md)
     * [Stats](api/api-presentation/audit-api/stats.md)
-    * [MCP usage (BETA)](api/api-presentation/audit-api/mcp-usage-beta.md)
+    * [MCP usage](api/api-presentation/audit-api/mcp-usage.md)
   * [MCP Reference](api/api-presentation/mcp-reference/README.md)
     * [Connecting a client](api/api-presentation/mcp-reference/connecting-a-client.md)
     * [OAuth flow for MCP (detailed)](api/api-presentation/mcp-reference/oauth-flow-for-mcp-detailed.md)

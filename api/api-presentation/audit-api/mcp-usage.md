@@ -1,7 +1,9 @@
-# MCP usage (BETA)
+# MCP usage
+
+## MCP usage (BETA)
 
 {% hint style="warning" %}
-**BETA.** All 40 Audit API endpoints are exposed as MCP tools, but tool schemas may evolve. Recommended for exploration only — do not rely on this for production-critical audit orchestration.
+**BETA.** The Audit MCP exposes a **curated 19-tool expert surface** (subset of the 40 REST endpoints) focused on the conflict-first workflow. Tool schemas may still evolve. Recommended for exploration only — do not rely on this for production-critical audit orchestration.
 {% endhint %}
 
 ### Endpoint
@@ -10,18 +12,23 @@
 * **Transport:** Streamable HTTP, stateless.
 * **Auth:** OAuth 2.1, discovered from `https://api-audit.kai-studio.ai/.well-known/oauth-authorization-server`. The same tokens work on the Retrieval API.
 
-### What works well today
+### Primary workflow — conflict-first
 
-* Exploring the state of existing audits (list instances, check status, fetch duplicates / conflicts / questions).
-* Reading stats and counters.
-* Setting answers and marking items as managed (write operations on individual resources).
-* Read-heavy workflows from a host LLM.
+1. `audit_dashboard_get` — orient on all instances (unresolved conflicts, pending questions, missing subjects).
+2. `audit_conflict_list` (default `state_in=['OPEN']`) → `audit_conflict_get` — walk through open conflicts.
+3. `audit_conflict_set_answer` — record the expert's answer; response contains per-document modification **recommendations** inline.
+4. Render the recommendations as a markdown table with `document_url` links, then ask the expert whether they applied each modification.
+5. `audit_conflict_set_managed` — call **only after** the expert confirms modifications were applied. Closes the conflict.
+
+`audit_document_get_recommendations` aggregates pending edits on a single document across all its resolved conflicts — use when the expert asks "what do I still need to change in document X?".
+
+Missing subjects (`audit_missing_subject_*`) handle **documentary gaps** (topics not covered), not contradictions. Full-audit (`audit_full_audit_*`) is a separate per-instance broad review — use only when the expert explicitly asks for it.
 
 ### What's rough
 
-The audit-launch state machine (`INIT` → `ON_CHECKING_INDEXATION` → `CHECK_INDEXATION_DONE` → `LAUNCH_DUPLICATE_IDENTIFICATION` → `ON_DUPLICATE_IDENTIFICATION` → `DUPLICATE_IDENTIFICATION_DONE` → `RUNNING_PHASE`) is complex, with background tasks and step transitions. It is **not yet fully smooth via MCP** — some transitions depend on background workers that may surface async feedback not ideally represented as synchronous tool returns.
+The audit-launch state machine (indexation → running phase) still depends on background workers, and creating / configuring instances is **not** exposed on MCP — those operations stay in `audit-ui`.
 
-**Recommendation for BETA:** start an audit in `audit-ui` and let MCP clients explore and query it afterwards. Full end-to-end automation via MCP will become first-class in a future release.
+**Recommendation for BETA:** start an audit in `audit-ui` and let MCP clients explore and resolve conflicts afterwards. Instance lifecycle automation via MCP is intentionally out of scope for now.
 
 ### Installation per client
 
