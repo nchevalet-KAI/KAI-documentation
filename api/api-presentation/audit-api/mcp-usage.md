@@ -1,10 +1,6 @@
 # MCP usage
 
-## MCP usage (BETA)
-
-{% hint style="warning" %}
-**BETA.** The Audit MCP exposes a **curated 19-tool expert surface** (subset of the 40 REST endpoints) focused on the conflict-first workflow. Tool schemas may still evolve. Recommended for exploration only — do not rely on this for production-critical audit orchestration.
-{% endhint %}
+## MCP usage
 
 ### Endpoint
 
